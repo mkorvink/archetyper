@@ -1,0 +1,57 @@
+---
+header-includes:
+- \usepackage{booktabs}
+- \usepackage{makecell}
+title: "Project Title"
+author: "Author Name"
+date: "Month Day, Year"
+output: pdf_document
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source("0_common.R")
+library(kableExtra)
+
+
+
+testing_with_predictions <- read_feather(get_versioned_file_name("data_working", "testing_w_predictions", ".feather"))
+
+```
+
+## Lorem ipsum
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sit amet orci id odio mattis condimentum. Proin a tortor sed lorem porta iaculis sit amet eu metus. Morbi gravida nulla ex, consectetur gravida dolor scelerisque eget. Morbi sed lectus consectetur, consequat lacus et, luctus elit. Curabitur vestibulum lacus vitae urna venenatis porttitor. Etiam tristique accumsan urna nec bibendum. Vivamus quis mi quis massa elementum fermentum. Pellentesque est est, tempor eu diam id, fringilla laoreet sem. Sed at lobortis justo.
+
+Praesent id auctor leo, in vehicula augue. Praesent lacinia ornare lacinia. Mauris vel justo tellus. Nam non leo eu justo malesuada elementum non nec lorem. Quisque hendrerit, massa sed tincidunt molestie, libero magna sollicitudin lectus, ut pellentesque lacus ligula sit amet est. Proin consectetur eget nunc ut bibendum. Curabitur erat odio, condimentum sed ullamcorper a, mattis at est. Curabitur accumsan vestibulum odio ut auctor. 
+
+```{r testing_with_predictions}
+kbl(head(testing_with_predictions), booktabs = T)
+
+```
+
+## Prediction Preformance
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non nisi a nisl placerat elementum. Cras in finibus metus. Pellentesque consequat est a urna mollis elementum. Sed condimentum, quam sed posuere interdum, enim quam ullamcorper erat, in euismod metus turpis non urna. Phasellus ut rutrum nisl, eget commodo sapien. Aliquam dignissim erat ac odio finibus, ut blandit eros condimentum. Donec auctor tortor ipsum, vel aliquam lacus sodales eu. Proin faucibus ac nulla eget suscipit. Vestibulum et massa viverra, semper sapien eget, blandit nunc. Curabitur feugiat leo tincidunt, blandit justo vitae, viverra metus. Aliquam erat volutpat. Aenean quis velit mattis, molestie orci sit amet, aliquam sem. Mauris ultricies, massa vitae volutpat hendrerit, lorem tellus lacinia sem, eget suscipit risus orci et ante.
+
+
+```{r feature detail}
+
+read_feather(get_versioned_file_name("data_working", "feature_dtl", ".feather")) %>% rename_all(snakecase::to_title_case) %>% kbl(booktabs = T)
+
+```
+In vulputate, ligula ac egestas euismod, quam enim placerat tellus, non gravida arcu odio ut nunc. Cras rhoncus sagittis sem, nec ornare turpis aliquet nec. Etiam ac magna nec dui laoreet ultrices sit amet ac purus. Cras et porttitor ipsum. Cras quis eleifend purus. Aenean vel dui ante. Sed aliquam ex a malesuada malesuada. Vivamus aliquam at lacus ut lobortis. Ut sed urna libero. 
+```{r pressure, echo=FALSE}
+
+testing_with_predictions %>%
+  mutate(prediction = round(prediction, 4)) %>%
+  ggplot(aes(x = response, y = prediction)) +
+  geom_boxplot() +
+  xlab("Response") +
+  ylab("Prediction") +
+  ggtitle("Predicting Reponse from Features")
+```
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ullamcorper ligula ut nisl aliquam aliquet. Phasellus tempor, leo at consequat mattis, dolor ipsum placerat dolor, vel sodales velit nisl at augue. Nam non sollicitudin nulla, sed consequat erat. Integer rhoncus nulla vel tortor euismod tempus. Donec at eros finibus ante interdum placerat at eu arcu. Sed molestie, diam et cursus iaculis, orci sapien gravida tortor, ac finibus augue nisl a quam. Nulla in ex feugiat, fringilla nisi sed, semper risus. Duis auctor, neque quis auctor tincidunt, ante mi cursus mauris, sed venenatis justo ante sed enim. Pellentesque consectetur accumsan elit, non varius tortor rhoncus quis. Duis dictum eleifend diam, sit amet congue nulla efficitur non. Aliquam sed condimentum libero. Vivamus sit amet turpis enim. Mauris feugiat sagittis finibus. 

@@ -1,0 +1,24 @@
+Package: archetyper
+Type: Package
+Title: Generates a project template for data mining projects
+Version: 0.1.0
+Author: Michael Korvink
+Maintainer: Michael Korvink <mkorvink@protonmail.com>
+Description: The archetyper project generates a set of components and directories to manage the data mining workflow as well as peripheral components to support unit testing, source control, logging, externalized properties, and linting.     
+License: GPL (>= 3)
+Encoding: UTF-8
+LazyData: true
+Imports:
+  dplyr,
+  readr,
+  magrittr,
+  stringr
+RoxygenNote: 7.1.1
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+VignetteBuilder: knitr
+Config/testthat/edition: 3
+Depends: 
+    R (>= 2.10)

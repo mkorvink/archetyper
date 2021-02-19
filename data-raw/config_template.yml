@@ -1,0 +1,6 @@
+default:
+  test_database:
+    driverclass: 'com.teradata.jdbc.TeraDriver'
+    connectionstring: 'jdbc:teradata://servername/dbname'
+    username: ''
+    password: ''

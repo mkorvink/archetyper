@@ -1,0 +1,7 @@
+lintr::lint("0_common.R")
+lintr::lint("0_test.R")
+lintr::lint("1_integrate.R")
+lintr::lint("2_munge.R")
+lintr::lint("3_explore.R")
+lintr::lint("4_model.R")
+lintr::lint("5_measure.R")
