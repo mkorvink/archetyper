@@ -4,6 +4,7 @@ library(snakecase)
 library(feather)
 library(config) #remove if yml file is not used
 library(log4r)
+library(bannerCommenter)
 
 source("utilities.R")
 

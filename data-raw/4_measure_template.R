@@ -1,20 +1,23 @@
-source("0_common.R")
-library(pROC)
+##-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+##  Step 4: Measure. In this step, the trained model will be applied to the testing partitions. Performance measures can be persisted and retrieved in the presentation step.   -
+##-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-testing_df <- read_feather(get_versioned_file_name("data_working", "analytic", ".feather")) %>%
-  filter(!training_ind) %>%
-  select(-training_ind, -rowname)
-mod <- readRDS(get_versioned_file_name("models", "logistic_mod", ".mod"))
+source("common.R")
 
-testing_df <- testing_df %>% cbind(prediction = predict(mod, testing_df, type = "response"))
-testing_df %>% ggplot(aes(x = response, y = prediction)) +
-  geom_boxplot()
-testing_df %>% write_feather(get_versioned_file_name("data_working", "testing_w_predictions", ".feather"))
+##-------------------------------------------------------
+##  Apply testing partitions to the persisted model     -
+##-------------------------------------------------------
 
-roc_obj <- roc(testing_df$response, testing_df$prediction)
+#testing_df <- read_feather(get_versioned_file_name("cache", "enriched", ".feather")) %>%
+#  filter(!training_ind) %>%
+#  dplyr::select(-training_ind)
+#
+#mod <- readRDS(get_versioned_file_name("models", "readmissions", ".mod"))
+#testing_df <- testing_df %>% cbind(prediction = predict(mod, testing_df, type = "response")) %>% tibble()
 
-# ROC Curve
-plot(roc_obj)
+##----------------------------------------------------------------------------------------------
+##  Write scored results to /data_output directory with version-controlled naming convention   -
+##----------------------------------------------------------------------------------------------
 
-# Print Performance Metrics
-print(coords(roc_obj, "best", "threshold"))
+#testing_df %>% write_feather(get_versioned_file_name("data_output", "testing_w_predictions", ".csv"))
+

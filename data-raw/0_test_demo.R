@@ -1,6 +1,10 @@
-source("common.R")
-library(testthat)
+##-------------------------------------------------------------------------------------------------
+##  Each functional component within the work-flow should be tested in isolation using unit tests   -
+##-------------------------------------------------------------------------------------------------
 
+source("common.R")
+
+library(testthat)
 
 # Testing common functions-----------------------------------
 test_that("test rounding", {
@@ -9,4 +13,8 @@ test_that("test rounding", {
 
 # Testing integration functions-----------------------------------
 
-# Testing munging functions-----------------------------------
+# Testing enrichment functions-----------------------------------
+
+# Testing model functions-----------------------------------
+
+# Testing measurement functions-----------------------------------

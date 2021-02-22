@@ -1,9 +1,10 @@
+##----------------------------------------------------------------------
+##  The mediator file will execute the linear data mining work-flow.   -
+##----------------------------------------------------------------------
 
-#Build this out a bit and test
+source("common.R")
 tryCatch(
   {
-    info(logger, "loading common libraries and constants...")
-    source("0_common.R")
     info(logger, "running tests...")
     source("0_test.R")
     info(logger, "gathering and integrating data...")

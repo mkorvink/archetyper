@@ -1,25 +1,21 @@
-source("0_common.R")
+##-------------------------------------------------------------------------------------------------------------------------------------------------
+##  Step 1: Data Integration: The source files are joined to produce base data-set comprised of unique hospitals as rows (i.e. observations) and  -
+##                                             # hospital characteristics as columns (i.e. features).                                             -
+##-------------------------------------------------------------------------------------------------------------------------------------------------
 
-library(RJDBC)
-library(titanic)
+source("common.R")
 
-##Read externalized DB properties from yml file
-#db <- config::get("test_database")
-#
-##connect to DB using JDBC
-#drv <- RJDBC::JDBC(driverClass = db$driverclass, classPath =  Sys.glob(str_c(getwd(),"/drivers/*")))
-#conn <- dbConnect(drv,db$connectionstring, db$username, db$password)
-#
-##Read in source data
-#sql <- 'select count(*) from qadv_prod.prov_cdm'
-#db_result_df <- dbGetQuery(conn, sql) %>% tibble()
-#base_data_df <- db_result_df
-#Disconnect from DB
-#dbDisconnect(conn)
+info(logger, "Loading, integrating, and transforming source data...")
 
-#Store output in a base data data frame (2x2 observations and features)
-base_data_df <- titanic_train  %>% bind_rows(titanic_test) %>%  rename_all(to_any_case)
+##----------------------------------------------------------------------------------------------------
+##  Gather and integrate data from the /data_input directory or external data store (e.g. database)  -
+##----------------------------------------------------------------------------------------------------
 
-#Persist base data
-base_data_df %>% write_feather(get_versioned_file_name("data_working", "base", ".feather"))
+info(logger, "Writing integrated data to /cache directory...")
 
+##-------------------------------------------------------------------------------------------
+##  Write integrated data to the /cache directory. File name should be version controlled.  -
+##-------------------------------------------------------------------------------------------
+
+#integrated_data_file_name <- get_versioned_file_name("cache", "integrated", ".feather")
+#integrated_df %>% write_feather(integrated_data_file_name)

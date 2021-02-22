@@ -1,14 +1,17 @@
-# This is a demo project to provide a representative example of the data mining and modeling workflow.  In this example
-# we will predict hospital readmission rates based on a variety of hospital-level characteristics.  All data used in this project is 
-# publically available.
 
-# Source: Hospital Compare https://data.cms.gov/provider-data/ (last accessed Feb 18 2021)
+##########################################################################################################################################
+##        This is a demo project to provide a representative example of the data mining and modeling work-flow.  In this example        ##
+##  we will predict hospital readmission rates based on a variety of hospital-level characteristics.  All data used in this project is  ##
+##                                                          publicly available.                                                         ##
+##                        Source: Hospital Compare https://data.cms.gov/provider-data/ (last accessed Feb 18 2021)                      ##
+##########################################################################################################################################
 
-# Step 1: Data Integration: The source files are joined to produce base dataset comprised of unique hospitals as rows (i.e. observations) and 
-# hospital characteristics as columns (i.e. features).  
 
+##-------------------------------------------------------------------------------------------------------------------------------------------------
+##  Step 1: Data Integration: The source files are joined to produce base data-set comprised of unique hospitals as rows (i.e. observations) and  -
+##                                             # hospital characteristics as columns (i.e. features).                                             -
+##-------------------------------------------------------------------------------------------------------------------------------------------------
 
-#common.R is sourced in each component script. It is reposible for loading shared libraries, constants, uutility functions, and logger.
 source("common.R")
 
 info(logger, "Loading, integrating, and transforming source data...")
@@ -31,9 +34,14 @@ complications_df <- read_csv("data_input/CMS_PSI_6_decimal_file.csv") %>%
 
 integrated_df <- hospital_info_df %>%
   inner_join(readmission_df, "facility_id") %>%
-  inner_join(complications_df, by = "facility_id")
+  inner_join(complications_df, by = "facility_id") %>%
+  dplyr::select(-facility_id)
 
 info(logger, "Writing integrated data to /cache directory...")
 
-integrated_data_file_name <- get_versioned_file_name("cache", "integrated", ".feather")
+##----------------------------------------------------------------------------------------------------
+##  Writing integrated dataframe to the /cache directory with version-controlled naming convention   -
+##----------------------------------------------------------------------------------------------------
+
+integrated_data_file_name <- get_versioned_file_name(directory = "cache", file_name = "integrated", file_suffix = ".feather")
 integrated_df %>% write_feather(integrated_data_file_name)

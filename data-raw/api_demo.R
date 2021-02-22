@@ -1,17 +1,8 @@
-#
-# This is a Plumber API. You can run the API by clicking
-# the 'Run API' button above.
-#
-# Find out more about building APIs with Plumber here:
-#
-#    https://www.rplumber.io/
-#
 library(plumber)
 
-mod <- readRDS("models/hospital_readmissions_readmissions_2021-02-19.mod") 
+mod <- readRDS("models/hospital_readmissions_readmissions_2021-02-19.mod")
 
 #* @readmission_risk  Demo API
-
 #* Get readmission prediction
 #* @param dt:list
 #* @post /predict

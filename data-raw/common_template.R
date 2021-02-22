@@ -13,5 +13,6 @@ project_name <- "archityper_proj_name"
 # Global options
 options(scipen = 1000)
 
+# Common logger
 logger <- log4r::logger()
 

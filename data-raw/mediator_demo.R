@@ -1,4 +1,8 @@
-#The mediator.R script will execute to entire data mining workflow. 
+##----------------------------------------------------------------------
+##  The mediator file will execute the linear data mining work-flow.   -
+##----------------------------------------------------------------------
+
+
 source("common.R")
 tryCatch(
   {
@@ -14,7 +18,7 @@ tryCatch(
     source("4_measure.R")
     info(logger, "building presentation materials...")
     rmarkdown::render("5_present.Rmd", "pdf_document", output_dir = "docs")
-    info(logger, "worflow is complete.")
+    info(logger, "workflow is complete.")
 
   },
   error=function(cond) {

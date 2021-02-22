@@ -1,4 +1,4 @@
-<a href='https://github.com/mkorvink/archetyper/'><img src='archetyper_hex.png' align="right" height="139" /></a>
+<a href='https://github.com/mkorvink/archetyper/'><img src='man/figures/archetyper_hex.png' align="right" height="139" /></a>
 
 ## Overview
 

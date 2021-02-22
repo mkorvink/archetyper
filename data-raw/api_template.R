@@ -1,35 +1,18 @@
-#
-# This is a Plumber API. You can run the API by clicking
-# the 'Run API' button above.
-#
-# Find out more about building APIs with Plumber here:
-#
-#    https://www.rplumber.io/
-#
+##-----------------------------------------------------------------------------------------------------------
+##  The trained model can be applied to outside data through a RESTful API (see demo for working example)   -
+##-----------------------------------------------------------------------------------------------------------
 
 library(plumber)
 
-#* @apiTitle Plumber Example API
+#Read the model
+#mod <- readRDS("models/<model_name>.mod")
 
-#* Echo back the input
-#* @param msg The message to echo
-#* @get /echo
-function(msg = "") {
-    list(msg = paste0("The message is: '", msg, "'"))
-}
+#* @prediction_model  My Prediction API
 
-#* Plot a histogram
-#* @png
-#* @get /plot
-function() {
-    rand <- rnorm(100)
-    hist(rand)
-}
-
-#* Return the sum of two numbers
-#* @param a The first number to add
-#* @param b The second number to add
-#* @post /sum
-function(a, b) {
-    as.numeric(a) + as.numeric(b)
-}
+#* Get model results
+#* @param dt:list
+#* @post /predict
+#function(dt = new_records) {
+ # Apply the model to input data
+ # predict(mod, dt, type = "response") %>% return()
+ # }

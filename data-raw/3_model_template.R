@@ -1,21 +1,15 @@
-source("0_common.R")
+##-------------------------------------------------------------------------------------------------------------------------
+##  Step 3: Modeling. In this step, the training partitions from the enrichment step are loaded and a model is trained.   -
+##-------------------------------------------------------------------------------------------------------------------------
 
-library(broom)
-library(feather)
+source("common.R")
 
-training_df <- read_feather(get_versioned_file_name("data_working", "analytic", ".feather")) %>%
-  filter(training_ind) %>%
-  select(-training_ind, -rowname)
+##--------------------------------------------------------------------------------------------------------------------------------------------------------
+##  Read in the training data partition(s), build model, write performance/model statistics to /cache directory and trained model to /model directory.   -
+##--------------------------------------------------------------------------------------------------------------------------------------------------------
 
-feature_vect <- training_df %>%
-  select(-response) %>%
-  colnames()
-formula <- as.formula(str_c("response ~ ", str_c(feature_vect, collapse = " + ")))
-logistic_mod <- glm(formula, data = training_df, family = "binomial")
+#training_df <- read_feather(get_versioned_file_name("cache", "enriched", ".feather")) %>%
+#  filter(training_ind) %>%
+#  dplyr::select(-training_ind)
 
-summary(logistic_mod)
-
-broom::glance(logistic_mod) %>% write_feather(get_versioned_file_name("data_working", "perf", ".feather"))
-broom::tidy(logistic_mod, conf.int = T) %>% write_feather(get_versioned_file_name("data_working", "feature_dtl", ".feather"))
-
-saveRDS(logistic_mod, get_versioned_file_name("models", "logistic_mod", ".mod"))
+#saveRDS(readmission_mod_step, get_versioned_file_name("models", "readmissions", ".mod"))

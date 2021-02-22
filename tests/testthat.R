@@ -34,3 +34,5 @@ test_that("Project names cannot include a :", {
   expect_equal(is_valid_project_name("my : project"), F)
 })
 
+
+
