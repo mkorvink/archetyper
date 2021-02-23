@@ -4,11 +4,12 @@ library(snakecase)
 library(feather)
 library(config) #remove if yml file is not used
 library(log4r)
+library(here)
 
-source("utilities.R")
+source("R/utilities.R")
 
 # Constants
-project_name <- "archityper_proj_name"
+project_name <- "archetyper_proj_name"
 
 # Global options
 options(scipen = 1000)

@@ -4,7 +4,7 @@
 ##                                 feature selection, and the assignment of partition labels.                                -
 ##----------------------------------------------------------------------------------------------------------------------------
 
-source("common.R")
+source("R/common.R")
 
 #integrated_df <- read_feather(get_versioned_file_name("cache", "integrated", ".feather"))
 

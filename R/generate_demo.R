@@ -1,8 +1,7 @@
 write_to_dir <-
   function(demo, file_name, project_directory) {
     output_path <- stringr::str_c(project_directory, stringr::str_c("/", file_name))
-    print(output_path)
-      readr::write_file(demo, output_path)
+    readr::write_file(demo, output_path)
   }
 
 #' generates a demo project built using the archetyper library
@@ -10,32 +9,39 @@ write_to_dir <-
 #' @examples
 #' generate_demo()
 #' @export
-generate_demo <- function() {
+generate_demo <- function(path) {
 
   project_name <- "hospital_readmissions_demo"
-  project_directory <- stringr::str_c(getwd(), "/", project_name)
+  project_directory <- stringr::str_c(path, "/", project_name)
+  project_r_directory <- stringr::str_c(project_directory, "/R")
 
   if (dir.exists(project_directory)){
     stop(stringr::str_c("Project name: ", project_name , " already exists in directory ", project_directory))
   }
 
-  directory_vect <- c("data_input/", "cache/", "data_output/", "models/", "docs/", "drivers/")
+  directory_vect <- c("data_input/", "cache/", "data_output/", "models/", "docs/", "drivers/", "R/")
+
   dir.create(project_directory)
+
 
   for (directory in directory_vect){
       dir.create(stringr::str_c(project_directory, "/", directory))
   }
 
   demo_vect <- c(test_demo, integrate_demo, enrich_demo, model_demo, measure_demo, present_demo,common_demo,
-    mediator_demo, utilities_demo, api_demo, lint_demo, gitignore_demo, readme_demo, config_demo)
+    mediator_demo, utilities_demo, explore_demo, api_demo, lint_demo, gitignore_demo, readme_demo, config_demo, proj_demo)
 
   names(demo_vect) <- c("0_test.R", "1_integrate.R", "2_enrich.R", "3_model.R", "4_measure.R", "5_present.Rmd", "common.R", "mediator.R", "utilities.R",
-    "api.R", "lint.R", ".gitignore", "readme.md", "config.yml")
+                        "explore.R", "api.R", "lint.R", ".gitignore", "readme.md", "config.yml", stringr::str_c(project_name, ".Rproj"))
 
   for (demo_index in seq_along(demo_vect)){
     demo_name <- names(demo_vect)[[demo_index]]
-    write_to_dir(demo_vect[[demo_index]], demo_name,  project_directory)
 
+    if (stringr::str_ends(demo_name, "(\\.R|\\.Rmd)")){
+      write_to_dir(demo_vect[[demo_index]], demo_name, project_r_directory)
+    } else {
+      write_to_dir(demo_vect[[demo_index]], demo_name, project_directory)
+    }
   }
 
    readr::write_csv(hospital_general_demo_file, stringr::str_c(project_directory, "/data_input/Hospital_General_Information.csv"))

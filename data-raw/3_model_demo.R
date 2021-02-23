@@ -2,7 +2,7 @@
 ##  Step 3: Modeling. In this step, the training partitions from the enrichment step are loaded and a model is trained.   -
 ##-------------------------------------------------------------------------------------------------------------------------
 
-source("common.R")
+source("R/common.R")
 
 library(broom)
 library(feather)

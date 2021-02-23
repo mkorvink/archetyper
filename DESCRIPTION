@@ -17,7 +17,8 @@ Imports:
   dplyr,
   readr,
   magrittr,
-  stringr
+  stringr, 
+  usethis
 RoxygenNote: 7.1.1
 Suggests: 
     knitr,

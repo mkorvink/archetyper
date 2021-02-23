@@ -5,8 +5,8 @@ library(feather)
 library(config) #remove if yml file is not used
 library(log4r)
 library(bannerCommenter)
-
-source("utilities.R")
+library(here)
+source("R/utilities.R")
 
 # Constants
 project_name <- "hospital_readmissions"

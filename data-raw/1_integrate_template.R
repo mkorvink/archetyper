@@ -3,7 +3,7 @@
 ##                                             # hospital characteristics as columns (i.e. features).                                             -
 ##-------------------------------------------------------------------------------------------------------------------------------------------------
 
-source("common.R")
+source("R/common.R")
 
 info(logger, "Loading, integrating, and transforming source data...")
 

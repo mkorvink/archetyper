@@ -2,7 +2,7 @@
 ##  Each functional component within the work-flow should be tested in isolation using unit tests   -
 ##-------------------------------------------------------------------------------------------------
 
-source("common.R")
+source("R/common.R")
 
 library(testthat)
 

@@ -3,21 +3,21 @@
 ##----------------------------------------------------------------------
 
 
-source("common.R")
+source("R/common.R")
 tryCatch(
   {
     info(logger, "running tests...")
-    source("0_test.R")
+    source("R/0_test.R")
     info(logger, "gathering and integrating data...")
-    source("1_integrate.R")
+    source("R/1_integrate.R")
     info(logger, "enriching base data...")
-    source("2_enrich.R")
+    source("R/2_enrich.R")
     info(logger, "building model(s)...")
-    source("3_model.R")
+    source("R/3_model.R")
     info(logger, "applying model(s) to test partitions...")
-    source("4_measure.R")
+    source("R/4_measure.R")
     info(logger, "building presentation materials...")
-    rmarkdown::render("5_present.Rmd", "pdf_document", output_dir = "docs")
+    rmarkdown::render("R/5_present.Rmd", "pdf_document", output_dir = "docs")
     info(logger, "workflow is complete.")
 
   },

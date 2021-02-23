@@ -10,10 +10,11 @@ output: pdf_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-source("common.R")
+source("R/common.R")
 library(kableExtra)
 library(gtsummary)
-testing_with_predictions <- read_feather(get_versioned_file_name("data_output", "testing_w_predictions", ".csv"))
+
+testing_with_predictions <- read_csv(get_versioned_file_name("../data_output", "testing_w_predictions", ".csv"))
 
 round_to_two_decimals <- function(x){
   return(round(x,2))

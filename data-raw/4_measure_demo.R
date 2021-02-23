@@ -2,7 +2,7 @@
 ##  Step 4: Measure. In this step, the trained model will be applied to the testing partitions. Performance measures can be persisted and retrieved in the presentation step.   -
 ##-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-source("common.R")
+source("R/common.R")
 
 library(caret)
 
@@ -25,7 +25,7 @@ testing_df <- testing_df %>% cbind(prediction = predict(mod, testing_df, type = 
 ##----------------------------------------------------------------------------------------------
 info(logger, "Writing test data with predictions to /data_output directory...")
 
-testing_df %>% write_feather(get_versioned_file_name("data_output", "testing_w_predictions", ".csv"))
+testing_df %>% write_csv(get_versioned_file_name("data_output", "testing_w_predictions", ".csv"))
 
 ##---------------------------------------------------------------------------------
 ##  Write performance statistics using holdout data-set to the /cache directory   -

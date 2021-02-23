@@ -8,10 +8,10 @@ output: pdf_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-source("common.R")
+source("R/common.R")
 #library(tidyverse)
 
-#testing_with_predictions <- read_feather(get_versioned_file_name("data_working", "testing_w_predictions", ".feather"))
+#testing_with_predictions <- read_csv(get_versioned_file_name("../data_output", #"testing_w_predictions", ".csv"))
 
 ```
 
