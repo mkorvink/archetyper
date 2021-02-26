@@ -1,5 +1,5 @@
 ##-------------------------------------------------------------------------------------------------
-##  Each functional component within the work-flow should be tested in isolation using unit tests   -
+##  Each functional component within the work-flow should be tested in isolation using unit tests -
 ##-------------------------------------------------------------------------------------------------
 
 source("R/common.R")

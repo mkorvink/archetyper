@@ -12,7 +12,7 @@ library(car) #cook's distance
 library(corrplot) #correlation matrix
 
 convert_not_applicable_to_na <- function(text) {
-  ifelse(text == 'Not Available', NA, text) %>% return()
+  ifelse(text == "Not Available", NA, text) %>% return()
 }
 
 ##----------------------------------------------------

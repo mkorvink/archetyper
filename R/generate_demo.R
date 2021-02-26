@@ -4,7 +4,7 @@ write_to_dir <-
     readr::write_file(demo, output_path)
   }
 
-#' generates a demo project built using the archetyper library
+#' generates a demo project using archetyper
 #'
 #' @param path The path where the project should be created. Default is the current working directory.
 

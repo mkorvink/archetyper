@@ -18,7 +18,8 @@ info(logger, "Loading, integrating, and transforming source data...")
 
 hospital_info_df <- read_csv("data_input/Hospital_General_Information.csv") %>%
   rename_all(to_any_case) %>%
-  dplyr::select(facility_id, state, hospital_type, hospital_ownership, emergency_services, meets_criteria_for_promoting_interoperability_of_eh_rs) %>%
+  dplyr::select(facility_id, state, hospital_type, hospital_ownership, emergency_services,
+                meets_criteria_for_promoting_interoperability_of_eh_rs) %>%
   rename(ehr_interop = meets_criteria_for_promoting_interoperability_of_eh_rs)
 
 readmission_df <- read_csv("data_input/Unplanned_Hospital_Visits-Hospital.csv") %>%

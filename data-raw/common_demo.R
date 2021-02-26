@@ -6,7 +6,7 @@ library(config) #remove if yml file is not used
 library(log4r)
 library(bannerCommenter)
 library(here)
-source(str_c(here(),"/R/utilities.R"))
+source(str_c(here(), "/R/utilities.R"))
 
 # Constants
 project_name <- "hospital_readmissions"
@@ -14,4 +14,5 @@ project_name <- "hospital_readmissions"
 # Global options
 options(scipen = 1000)
 
+#Logger
 logger <- log4r::logger()

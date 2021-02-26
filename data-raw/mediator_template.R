@@ -3,8 +3,7 @@
 ##----------------------------------------------------------------------
 
 source("R/common.R")
-tryCatch(
-  {
+tryCatch({
     info(logger, "running tests...")
     source("R/0_test.R")
     info(logger, "gathering and integrating data...")
@@ -20,7 +19,7 @@ tryCatch(
     info(logger, "worflow is complete.")
 
   },
-  error=function(cond) {
-    log4r::error(logger, str_c("Script error: ",cond))
+  error = function(cond) {
+    log4r::error(logger, str_c("Script error: ", cond))
   }
 )

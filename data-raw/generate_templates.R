@@ -1,6 +1,5 @@
 # generate templates from files in raw data
 library(readr)
-library(titanic)
 library(shinymanager)
 library(tidyverse)
 setwd("~/git/archetyper/data-raw/")
@@ -90,7 +89,18 @@ usethis::use_data(
 #lintr::lint("1_integrate_template.R")
 #lintr::lint("2_enrich_template.R")
 #lintr::lint("3_model_template.R")
-#lintr::lint("4_measure_template.R")
+#lintr::lint("4_evaluate_template.R")
 #lintr::lint("5_present_template.Rmd")
 #lintr::lint("mediator_template.R")
+#lintr::lint("api_template.R")
+
+#lintr::lint("common_demo.R")
+#lintr::lint("0_test_demo.R")
+#lintr::lint("1_integrate_demo.R")
+#lintr::lint("2_enrich_demo.R")
+#lintr::lint("3_model_demo.R")
+#lintr::lint("4_evaluate_demo.R")
+#lintr::lint("5_present_demo.Rmd")
+#lintr::lint("mediator_demo.R")
+#lintr::lint("api_demo.R")
 

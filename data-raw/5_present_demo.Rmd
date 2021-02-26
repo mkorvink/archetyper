@@ -15,10 +15,10 @@ library(gtsummary)
 
 source("common.R")
 
-testing_with_predictions <- readr::read_csv(stringr::str_c("../data_output/",project_name,"_testing_w_predictions_",Sys.Date(), ".csv"))
+testing_with_predictions <- readr::read_csv(stringr::str_c("../data_output/", project_name, "_testing_w_predictions_", Sys.Date(), ".csv"))
 
-round_to_two_decimals <- function(x){
-  return(round(x,2))
+round_to_two_decimals <- function(x) {
+  return(round(x, 2))
 }
 ```
 
@@ -33,23 +33,23 @@ Praesent id auctor leo, in vehicula augue. Praesent lacinia ornare lacinia. Maur
 In vulputate, ligula ac egestas euismod, quam enim placerat tellus, non gravida arcu odio ut nunc. Cras rhoncus sagittis sem, nec ornare turpis aliquet nec. Etiam ac magna nec dui laoreet ultrices sit amet ac purus. Cras et porttitor ipsum. Cras quis eleifend purus. Aenean vel dui ante. Sed aliquam ex a malesuada malesuada. Vivamus aliquam at lacus ut lobortis. Ut sed urna libero. 
 
 ```{r testing_with_predictions, message = FALSE, echo=FALSE}
-testing_with_predictions %>% 
-  dplyr::select(-state) %>% 
-  tbl_summary() 
+testing_with_predictions %>%
+  dplyr::select(-state) %>%
+  tbl_summary()
 ```
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non nisi a nisl placerat elementum. Cras in finibus metus. Pellentesque consequat est a urna mollis elementum. Sed condimentum, quam sed posuere interdum, enim quam ullamcorper erat, in euismod metus turpis non urna. Phasellus ut rutrum nisl, eget commodo sapien. Aliquam dignissim erat ac odio finibus, ut blandit eros condimentum. Donec auctor tortor ipsum, vel aliquam lacus sodales eu. Proin faucibus ac nulla eget suscipit. Vestibulum et massa viverra, semper sapien eget, blandit nunc. Curabitur feugiat leo tincidunt, blandit justo vitae, viverra metus. Aliquam erat volutpat. Aenean quis velit mattis, molestie orci sit amet, aliquam sem. Mauris ultricies, massa vitae volutpat hendrerit, lorem tellus lacinia sem, eget suscipit risus orci et ante.
 
 ## Results
 ```{r feature detail, echo=FALSE}
-feather::read_feather(stringr::str_c("../data_output/",project_name,"_feature_dtl_",Sys.Date(), ".csv")) %>% 
+readr::read_csv(stringr::str_c("../data_output/", project_name, "_feature_dtl_", Sys.Date(), ".csv")) %>%
   mutate(term = toupper(to_title_case(term)),
          term = str_replace_all(term, "HOSPITAL OWNERSHIP", ""),
          term = str_replace_all(term, "VOLUNTARY NON PROFIT", ""),
          term = str_replace_all(term, "OR AUTHORITY", ""),
          term = str_replace_all(term, "HOSPITAL TYPE", "TYPE - ")
          ) %>%
-  mutate_if(is.numeric,round_to_two_decimals) %>% 
+  mutate_if(is.numeric, round_to_two_decimals) %>%
   filter(!str_detect(term, "STATE")) %>%
   rename_all(snakecase::to_title_case) %>%
   kbl(booktabs = T)
@@ -58,9 +58,9 @@ feather::read_feather(stringr::str_c("../data_output/",project_name,"_feature_dt
 In vulputate, ligula ac egestas euismod, quam enim placerat tellus, non gravida arcu odio ut nunc. Cras rhoncus sagittis sem, nec ornare turpis aliquet nec. Etiam ac magna nec dui laoreet ultrices sit amet ac purus. Cras et porttitor ipsum. Cras quis eleifend purus. Aenean vel dui ante. Sed aliquam ex a malesuada malesuada. Vivamus aliquam at lacus ut lobortis. Ut sed urna libero. 
 
 ```{r model detail, echo=FALSE}
-feather::read_feather(stringr::str_c("../data_output/",project_name,"_perf_",Sys.Date(), ".csv")) %>% 
-  pivot_longer(everything()) %>% 
-  mutate(value = round(value, 3)) %>% 
+readr::read_csv(stringr::str_c("../data_output/", project_name, "_perf_", Sys.Date(), ".csv")) %>%
+  pivot_longer(everything()) %>%
+  mutate(value = round(value, 3)) %>%
   rename_all(snakecase::to_title_case) %>%
   kbl(booktabs = T)
 ```

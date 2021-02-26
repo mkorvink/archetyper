@@ -8,7 +8,7 @@ output: pdf_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-
+library(tidyverse)
 #library(kableExtra)
 #library(gtsummary)
 #source("common.R")
@@ -24,13 +24,12 @@ Praesent id auctor leo, in vehicula augue. Praesent lacinia ornare lacinia. Maur
 
 ```{r test_results, echo=FALSE}
 
-acts<- rnorm(1000, 4, 2)
+acts <- rnorm(1000, 4, 2)
 pred <- acts + rnorm(1000, 0, 1)
-tibble(predictions = pred, actuals = acts) %>% 
+tibble(predictions = pred, actuals = acts) %>%
   ggplot(aes(x = actuals, y = predictions)) +
-  geom_point() + 
+  geom_point() +
   xlab("Actuals") +
   ylab("Predictions") +
   ggtitle("Actuals vs. Predictions")
-
 ```

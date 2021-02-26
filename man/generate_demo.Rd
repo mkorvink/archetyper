@@ -2,7 +2,7 @@
 % Please edit documentation in R/generate_demo.R
 \name{generate_demo}
 \alias{generate_demo}
-\title{generates a demo project built using the archetyper library}
+\title{generates a demo project using archetyper}
 \usage{
 generate_demo(path = ".")
 }
@@ -10,7 +10,7 @@ generate_demo(path = ".")
 \item{path}{The path where the project should be created. Default is the current working directory.}
 }
 \description{
-generates a demo project built using the archetyper library
+generates a demo project using archetyper
 }
 \examples{
 generate_demo()
