@@ -164,9 +164,9 @@ list.files("hospital_readmissions_demo/")
 
 (note logging and relative directories, comments created through banner library (check name))
 
-The the full code life-cycle can be triggered by executing the `mediator.R` from the terminal or by sourcing file directly:
-```{r engine='bash', comment=''}
-cat hospital_readmissions_demo/R/mediator.R
+The the full code life-cycle can be triggered by executing the `mediator.R` file:
+```{r }
+cat(readChar("hospital_readmissions_demo/R/mediator.R", 1e5))
 ```
 
 
