@@ -4,7 +4,7 @@ citEntry(entry = "Manual",
     title = "archetyper: An R Package for Generating Data Mining Software Archetypes",
     author = personList(as.person("Michael Korvink"), as.person("Matthew Nethery"), as.person("Franck Diaz-Garelli")),
     year = "2021",
-    note = "R package version 1.0",
+    note = "R package version 0.1.0",
     url = "https://CRAN.R-project.org/package=archetyper",
   textVersion  =
-  paste("Korvink, M. [aut, cre, com], Nethery M. [ctb], Diaz-Garelli F. [ctb] R. (2021). archetyper: An R Package for Generating Data Mining Software Archetypes. R package version 1.0. https://CRAN.R-project.org/package=archetyper"),)
+  paste("Korvink, M. [aut, cre, com], Nethery M. [ctb], Diaz-Garelli F. [ctb] R. (2021). archetyper: An R Package for Generating Data Mining Software Archetypes. R package version 0.1.0. https://CRAN.R-project.org/package=archetyper"),)

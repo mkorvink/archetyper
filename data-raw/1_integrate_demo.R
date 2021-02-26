@@ -37,11 +37,11 @@ integrated_df <- hospital_info_df %>%
   inner_join(complications_df, by = "facility_id") %>%
   dplyr::select(-facility_id)
 
-info(logger, "Writing integrated data to /cache directory...")
+info(logger, "Writing integrated data to /data_working directory...")
 
 ##----------------------------------------------------------------------------------------------------
 ##  Writing integrated dataframe to the /cache directory with version-controlled naming convention   -
 ##----------------------------------------------------------------------------------------------------
 
-integrated_data_file_name <- get_versioned_file_name(directory = "cache", file_name = "integrated", file_suffix = ".feather")
+integrated_data_file_name <- get_versioned_file_name(directory = "data_working", file_name = "integrated", file_suffix = ".feather")
 integrated_df %>% write_feather(integrated_data_file_name)

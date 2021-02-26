@@ -2,9 +2,14 @@
 % Please edit documentation in R/generate.R
 \name{generate}
 \alias{generate}
-\title{generates a set of files and directories to support both the data mining workflow and surrounding technical components.}
+\title{generates a set of files and directories to support both the data mining work-flow and surrounding technical components.}
 \usage{
-generate(project_name, db_connection_type = "", exclude = as.character())
+generate(
+  project_name,
+  db_connection_type = "",
+  exclude = as.character(),
+  path = "."
+)
 }
 \arguments{
 \item{project_name}{The name of the project to be generated.}
@@ -12,9 +17,11 @@ generate(project_name, db_connection_type = "", exclude = as.character())
 \item{db_connection_type}{A optional string indicating if a "JDBC" or "ODBC" connection will be used in the project.}
 
 \item{exclude}{A character vector of components to exclude from generation.}
+
+\item{path}{The path where the project should be created. Default is the current working directory.}
 }
 \description{
-generates a set of files and directories to support both the data mining workflow and surrounding technical components.
+generates a set of files and directories to support both the data mining work-flow and surrounding technical components.
 }
 \examples{
 generate("majestic_12")

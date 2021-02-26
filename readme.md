@@ -1,5 +1,9 @@
 <a href='https://github.com/mkorvink/archetyper/'><img src='man/figures/archetyper_hex.png' align="right" height="139" /></a>
 
+  <!-- badges: start -->
+  [![R-CMD-check](https://github.com/mkorvink/archetyper/workflows/R-CMD-check/badge.svg)](https://github.com/mkorvink/archetyper/actions)
+  <!-- badges: end -->
+
 ## Overview
 
 archetyper is a tool to initialize data mining projects by generating common workflow components and surrounding files to support technical best practices:
@@ -8,10 +12,9 @@ archetyper is a tool to initialize data mining projects by generating common wor
 
 You can learn more about archetyper in `vignette("archetyper")`.
 
-
 ### Development version
 
-To get a bug fix or to use a feature from the development version, you
+To get a bug fix or use a feature from the development version, you
 can install the development version of archetyper from GitHub.
 
 ``` r
@@ -26,10 +29,15 @@ devtools::install_github("mkorvink/archetyper")
 
  archetyper::generate("majestic_12")
 
-#> list.files("majestic_12/")
- [1] "0_test.R"      "1_integrate.R" "2_enrich.R"    "3_model.R"     "4_measure.R"   "5_present.Rmd"
- [7] "api.R"         "cache"         "common.R"      "data_input"    "data_output"   "docs"         
-[13] "lint.R"        "mediator.R"    "models"        "readme.md"     "utilities.R"  
+> list.files("majestic_12/")
+[1] "data_input"        "data_output"       "data_working"      "docs"             
+[5] "majestic_12.Rproj" "models"            "R"                 "readme.md"     
+
+> list.files("majestic_12/R")
+ [1] "0_test.R"      "1_integrate.R" "2_enrich.R"    "3_model.R"     "4_evaluate.R" 
+ [6] "5_present.Rmd" "api.R"         "common.R"      "explore.R"     "lint.R"       
+[11] "mediator.R"    "utilities.R"  
+
 
 ```
 

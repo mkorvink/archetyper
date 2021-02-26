@@ -11,7 +11,7 @@ test_demo <- read_file("0_test_demo.R")
 integrate_demo <- read_file("1_integrate_demo.R")
 enrich_demo <- read_file("2_enrich_demo.R")
 model_demo <- read_file("3_model_demo.R")
-measure_demo <- read_file("4_measure_demo.R")
+evaluate_demo <- read_file("4_evaluate_demo.R")
 present_demo <- read_file("5_present_demo.Rmd")
 mediator_demo <- read_file("mediator_demo.R")
 utilities_demo <- read_file("utilities_demo.R")
@@ -32,7 +32,7 @@ test_template <- read_file("0_test_template.R")
 integrate_template <- read_file("1_integrate_template.R")
 enrich_template <- read_file("2_enrich_template.R")
 model_template <- read_file("3_model_template.R")
-measure_template <- read_file("4_measure_template.R")
+evaluate_template <- read_file("4_evaluate_template.R")
 present_template <- read_file("5_present_template.Rmd")
 mediator_template <- read_file("mediator_template.R")
 utilities_template <- read_file("utilities_template.R")
@@ -43,7 +43,7 @@ proj_template <- read_file("proj_template.txt")
 api_template <- read_file("api_template.R")
 gitignore_template <- read_file("gitignore_template.txt")
 config_template <- read_file("config_template.yml")
-readme_template <- read_file("readme_template.txt")
+readme_template <- read_file("readme_template.md")
 
 usethis::use_data(
   common_demo,
@@ -51,7 +51,7 @@ usethis::use_data(
   integrate_demo,
   enrich_demo,
   model_demo,
-  measure_demo,
+  evaluate_demo,
   present_demo,
   mediator_demo,
   utilities_demo,
@@ -70,7 +70,7 @@ usethis::use_data(
   integrate_template,
   enrich_template,
   model_template,
-  measure_template,
+  evaluate_template,
   present_template,
   mediator_template,
   utilities_template,

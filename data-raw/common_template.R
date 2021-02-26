@@ -4,9 +4,9 @@ library(snakecase)
 library(feather)
 library(config) #remove if yml file is not used
 library(log4r)
+library(bannerCommenter)
 library(here)
-
-source("R/utilities.R")
+source(str_c(here(),"/R/utilities.R"))
 
 # Constants
 project_name <- "archetyper_proj_name"

@@ -20,7 +20,9 @@ library(archetyper)
 
 The lifecyle of a data mining project generally includes:
 
-* Integration:
+* Integration
+
+* Exploration
 
 * Enrichment
 
@@ -41,13 +43,15 @@ Additionally, a well-formed data mining project will include:
 
 * Unit testing
 
-* A readme file
+* Readme generation
 
-* Adherence to coding standards
+* Adherence to syntax and style
 
-* Externalized properties 
+* Externalized properties (when necessary)
 
 * Logging support
+
+* Relative directories
 
 
 ## Generating a new project with `generate()`:  
@@ -60,50 +64,54 @@ ifelse(dir.exists("majestic_12"),unlink("majestic_12", recursive=TRUE), NA)
 ```
 
 ```{r}
-generate("majestic_12")
-
+generate(project_name = "majestic_12")
 list.files("majestic_12/")
 
+```
+
+The R code for the data mining workflow will be in the /R directory.
+
+```{r}
+list.files("majestic_12/R/")
 ```
 
 ```{r, include = FALSE}
 ifelse(dir.exists("majestic_12"),unlink("majestic_12", recursive=TRUE), NA)
 ```
 
-
 The base workflow files include integrate.R, enrich.R, model.R, measure.R, present.Rmd, and api.R.
 
-* `integrate.R` is responsible for integration tasks.  Templated code is provided in the file to demonstrate its use within the larger modeling workflow.  The output of the integration step is a two-by-two tibble object saved in feather format to the /cache directory for downstream use. It is worth noting that the feather file format efficiently stores the data while maintaining datatypes. Feather files can further be read into both R and Python applications, while preserving the metadata included in the data frame itself.
-* `enrich.R` is responsible for reading integrated data from the `/cache` directory. As with the integration step, the output of the integration step is a two-by-two tibble object saved as a version-controlled feather file in the `/cache` directory for downstream use.
-* `model.R` should read the training partitions from the enriched dataset stored in the `/cache` directory and trains the desired model. Model objects generated within the model.R file should be stored in the `/models` directory using consistent version control and naming conventions.
-*	`evaluate.R` should read the testing partitions from the enriched dataset stored in the `/cache` directory and applies the trained model from the `/model` directory. Model results are appended to the testing dataset and are persisted as a plain-text file in the `/results` directory. A feather file is not generated in this step as it this data may be shared with non-technical stakeholders directly.  Visualizations related to performance on the testing dataset, such as ROC Curves and box-plots, model metadata (e.g. coefficients) may be generated at this phase and persisted in the `/cache` directory.
-*	`present.Rmd` is an RMarkdown document template that demonstrates the assembly of data and charts stored within both the cache and results directory.  The mediator.R script will knit the Markdown document and store the resulting file into the `/docs` directory.
+* `1_integrate.R` is responsible for integration tasks.  Templated code is provided in the file to demonstrate its use within the larger modeling workflow.  The output of the integration step is a two-by-two tibble object saved in feather format to the /cache directory for downstream use. It is worth noting that the feather file format efficiently stores the data while maintaining datatypes. Feather files can further be read into both R and Python applications, while preserving the metadata included in the data frame itself.
+* `2_enrich.R` is responsible for reading integrated data from the `/data_working` directory. As with the integration step, the output of the integration step is a two-by-two tibble object saved as a version-controlled feather file in the `/data_working` directory for downstream use.
+* `3_model.R` should read the training partitions from the enriched dataset stored in the `/data_working` directory and trains the desired model. Model objects generated within the model.R file should be stored in the `/models` directory using consistent version control and naming conventions.
+*	`4_evaluate.R` should read the testing partitions from the enriched dataset stored in the `/cache` directory and applies the trained model from the `/model` directory. Model results are appended to the testing dataset and are persisted as a plain-text file in the `/data_output` directory. A feather file is not generated in this step as it this data may be shared with non-technical stakeholders directly.  Visualizations related to performance on the testing dataset, such as ROC Curves and box-plots, model metadata (e.g. coefficients) may be generated at this phase and persisted in the `/data_working` directory.
+*	`5_present.Rmd` is an RMarkdown document template that demonstrates the assembly of data and charts stored within both the cache and results directory.  The mediator.R script will knit the Markdown document and store the resulting file into the `/docs` directory.
+*	`explore.R` exists outside of the sequential workflow and is used primarily for transient data analysis needed for data integration and feature preparation.
 *	`api.R` is a RESTful api template generated by archetyper. A curl command is included in the file to demonstrate interaction with the deployed API. The API can be tested locally or deployed to an internal server. Note that the `archetyper` API template does not enforce authentication (research) and therefore developers should consult with their security team prior to deploying an API within their organization.  The RESTful service in the `api.R` file is implemented using the `plumber` library.
 
 Additional files are created to serve supporting functions:
 
 *	`test.R` stores unit and integration tests with an example unit test using the testthat library (CITE)
 *	`mediator.R` is responsible for the contiguous execution of each component, with conditions to stop execution upon failure at any step.  The `mediator.R` file is named after the Gang of Four mediator pattern (cite) as it orchestrates calls to each component and enforces isolation between them. The mediator.R file  further executes unit tests prior to the execution of the workflow, and additionally has templated code to run a linting process to enforce code styling and formatting best practices.
-*	`common.R` is responsible for identifying libraries common across components (e.g. `dplyr`, `stringr`, `magittr`, etc.), as well as project constants. Each component in the workflow sources the common.R file.  
-*	`utilities.R` is designed to store functions that are necessary across components. The `common.R` file sources the utilities.R file, and in turn, each 
+*	`common.R` is responsible for identifying libraries common across components (e.g. `dplyr`, `stringr`, `magittr`, etc.), storing project constants, inhereting utilities, and initializing a centralized logger. Each component in the workflow sources the common.R file.  
+*	`utilities.R` is designed to store functions that are necessary across components. The `common.R` file sources the utilities.R file, and in turn, each file in the workflow sourcing common.R also has access to the common utility methods. 
 *	`.gitignore` excludes commonly ignored R objects (e.g. provide examples).  The `.gitignore` file is further updated to exclude the `config.yml` file so that a externalized user database credentials are not committed into a shared source code repository.  The base .gitignore file included in the archetyper template was generated from the `gitignore` r package.
 *	`lint.R` includes linting commands for each file in the workflow to enforce proper style and syntax conventions
 *	`readme.md` is designed to provide project documentation and details on how the user will interact with the code.
+* `.Rproj` is a file indicating that the director includes an R project and includes metadata related to the project itself. This file further serves as the marker of the root directory so that relative directories can be used in the .R files (supported by the `here` package).
 
 
 A directory structure designed to logically separate the data artifacts produced throughout the workflow. These directories include:
 
-*	`/source_data` is used to store unprocessed data read in through the `integration.R` file
-*	`/cache` stores working data throughout the data mining workflow. This data includes versioned snapshots of both integrated and enriched data as well as other files and objects that might be necessary to present findings from the model.
+*	`/data_input` is used to store unprocessed data read in through the `integration.R` file
+*	`/data_working` stores working data throughout the data mining workflow. This data includes versioned snapshots of both integrated and enriched data as well as other files and objects that might be necessary to present findings from the model.
 *	`/models` stores version controlled model objects
-*	`/result_data` stores version-controlled plain-text files with the appended model results. 
+*	`/data_output` stores version-controlled plain-text files with the appended model results. 
+* `/docs` TODO: Describe
 
-
-For traceability, files and object (e.g. models) throughout the project are named according to a standard naming convention. (note snakecase as a helpful library)
-This structure, in conjunction with the persistent state of each component, allows each component script to be run independently without sourcing all the preceding components.
+For traceability, files and object (e.g. models) throughout the project are named according to a standard naming convention. This structure, in conjunction with the persistent state of each component, allows each component script to be run independently without sourcing all the preceding components.
 
 `[ project_name ]_[ file_name ]_[ YYYY_MM_DD_HH:MM ].[ file_extension ]`
-
 
 ### Database connections
 
@@ -112,6 +120,7 @@ A database connection type of “odbc” or “jdbc” can be passed in as a fun
 
 * `dml_ddl.sql` for storing SQL statements and other database scripts used to prepare and extract data from the source systems, 
 * `config.yml` for storing secret database
+
 
 If using JDBC, a directory for driver JARs named `/drivers` will also be created:
 
@@ -132,6 +141,8 @@ ifelse(dir.exists("majestic_12"),unlink("majestic_12", recursive=TRUE), NA)
 archetyper::generate("majestic_12",  exclude = c("api", "utilities", "readme", "lint", "gitignore"))
 
 list.files("majestic_12/")
+list.files("majestic_12/R/")
+
 ```
 
 ```{r, include = FALSE}
@@ -139,52 +150,64 @@ ifelse(dir.exists("majestic_12"),unlink("majestic_12", recursive=TRUE), NA)
 ```
 ## Generating the demo project
 
-```{r}
-#archetyper::generate_demo()
+
+```{r, include = FALSE}
+ifelse(dir.exists("hospital_readmissions_demo"),unlink("hospital_readmissions_demo", recursive=TRUE), NA)
 ```
 
-The the full code life-cycle can be triggered by executing the `mediator.R` script:
-
 
 ```{r}
-#source("mediator.R")
+archetyper::generate_demo()
+list.files("hospital_readmissions_demo/")
 
+```
+
+(note logging and relative directories, comments created through banner library (check name))
+
+The the full code life-cycle can be triggered by executing the `mediator.R` from the terminal or by sourcing file directly:
+```{r engine='bash', comment=''}
+cat hospital_readmissions_demo/R/mediator.R
+```
+
+
+
+#TODO: Describe the business problem in the demo (including what a PSI is)
+#TODO: explain what is happening in each step
+#Show example output somehow (markdown file)
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, include=T}
+
+
+> list.files("hospital_readmissions_demo/data_input/")
+[1] "CMS_PSI_6_decimal_file.csv"             "Hospital_General_Information.csv"       "Unplanned_Hospital_Visits-Hospital.csv"
+
+
+#Integration step
+> list.files("data_working/")
+[1] "hospital_readmissions_integrated_2021-02-25.feather"    
+
+#Enrichment step
+> list.files("data_working/")
+[1] "hospital_readmissions_enriched_2021-02-25.feather"       "hospital_readmissions_integrated_2021-02-25.feather" 
+
+#Model
+> list.files("mod/")
+[1] "hospital_readmissions_readmissions_2021-02-23.mod"
+
+#Evaluate
+> list.files("data_ouput/")
+[1] "hospital_readmissions_feature_dtl_2021-02-25.csv"   "hospital_readmissions_holdout_perf_stats_2021-02-25.csv"
+[3] "hospital_readmissions_perf_2021-02-25.feather"       
+
+#Present
+> list.files("hospital_readmissions_demo/docs/")
+[1] "5_present.pdf"
+
+```
+
+```{r, include = FALSE}
+ifelse(dir.exists("hospital_readmissions_demo"),unlink("hospital_readmissions_demo", recursive=TRUE), NA)
 ```
 
 Version-controlled feature files produced by the integration and enrichment components. Lightweight storage. Minimizes unnecessary reprocessing.  Data has observations as rows and features as columns. (Describe more)
-
-```{r}
-#source("mediator.R")
-#list.files("readmission_analysis/cache")
-```
-
-
-TODO: Show the head of the integrate and erich file (to show that it is tidy data and to distinguish the type of data between integrate and enrich).  Show that training labels have been added to the enrich data
-
-Models are persisted
-
-```{r}
-#source("mediator.R")
-#list.files("readmission_analysis/models")
-```
-
-show that predictions have been applied to the test data in plain text format
-
-```{r}
-#source("mediator.R")
-#list.files("readmission_analysis/results")
-```
-
-
-Show that markdown doc was created
-
-```{r}
-#source("mediator.R")
-#list.files("readmission_analysis/docs")
-```
-
-
-
-TODO: Think about cat(file.r) to show the contents in each file.
-
 

@@ -14,7 +14,7 @@ tryCatch(
     info(logger, "building model(s)...")
     source("R/3_model.R")
     info(logger, "applying model(s) to test partitions...")
-    source("R/4_measure.R")
+    source("R/4_evaluate.R")
     info(logger, "building presentation materials...")
     rmarkdown::render("R/5_present.Rmd", "pdf_document", output_dir = "docs")
     info(logger, "worflow is complete.")

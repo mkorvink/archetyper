@@ -14,16 +14,27 @@ BugReports: https://github.com/mkorvink/archetyper/issues
 Encoding: UTF-8
 LazyData: true
 Imports:
-  dplyr,
+  bannerCommenter,
+  broom,
+  caret,
+  config,
+  feather,
+  gtsummary,
+  here,
+  kableExtra,
+  knitr,
+  log4r,
+  MASS,
+  performance,
   readr,
-  magrittr,
-  stringr, 
-  usethis
+  rmarkdown,
+  skimr,
+  stringr,
+  snakecase,
+  testthat (>= 3.0.0),
+  tidyverse
 RoxygenNote: 7.1.1
 Suggests: 
-    knitr,
-    rmarkdown,
-    testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Config/testthat/edition: 3
 Depends: 

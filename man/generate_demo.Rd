@@ -4,7 +4,10 @@
 \alias{generate_demo}
 \title{generates a demo project built using the archetyper library}
 \usage{
-generate_demo()
+generate_demo(path = ".")
+}
+\arguments{
+\item{path}{The path where the project should be created. Default is the current working directory.}
 }
 \description{
 generates a demo project built using the archetyper library

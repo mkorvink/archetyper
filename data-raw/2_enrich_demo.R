@@ -20,7 +20,7 @@ convert_not_applicable_to_na <- function(text) {
 ##----------------------------------------------------
 info(logger, "Preparing features...")
 
-base_data_df <- read_feather(get_versioned_file_name("cache", "integrated", ".feather")) %>%
+base_data_df <- read_feather(get_versioned_file_name("data_working", "integrated", ".feather")) %>%
   mutate_at(vars(matches("PSI"), score, denominator), convert_not_applicable_to_na) %>%
   mutate_at(vars(matches("PSI"), score, denominator), as.numeric) %>%
   mutate(hospital_ownership = to_any_case(hospital_ownership),
@@ -39,7 +39,7 @@ base_data_df <- read_feather(get_versioned_file_name("cache", "integrated", ".fe
 ##------------------------------------------------------------------------
 info(logger, "Imputing IVs...")
 
-enriched_imp <- mice(base_data_df %>% dplyr::select(-response), exclude = "response", m = 5)
+enriched_imp <- mice(base_data_df %>% dplyr::select(-response), exclude = "response", m = 1)
 enriched_imp_df <- complete(enriched_imp) %>%
   tibble() %>%
   bind_cols(response = base_data_df$response)
@@ -70,7 +70,7 @@ enriched_no_outlier_df <- enriched_imp_df %>%
 ##        Scale and center the independent variables       -
 ##----------------------------------------------------------
 info(logger, "Scaling and centering data...")
-preprocess_values <- preProcess(enriched_no_outlier_df %>% select(-response), method = c("center", "scale"))
+preprocess_values <- preProcess(enriched_no_outlier_df %>% dplyr::select(-response), method = c("center", "scale"))
 enriched_scaled_df <- predict(preprocess_values, enriched_no_outlier_df)
 
 ##--------------------------------------------------------------------------------
@@ -95,7 +95,7 @@ enriched_scaled_df <- enriched_scaled_df %>% dplyr::select(-PSI_90)
 ##  Assign testing and training labels to the data-set using stratified sampling.   -
 ##-----------------------------------------------------------------------------------
 info(logger, "Assigning training and testing partitions...")
-train_index <- createDataPartition(enriched_scaled_df$hospital_ownership, p = .8, list = FALSE)
+train_index <- createDataPartition(enriched_scaled_df$state, p = .8, list = FALSE)
 final_enriched_df <- enriched_scaled_df %>%
   rownames_to_column() %>%
   mutate(training_ind = rowname %in% train_index)
@@ -103,7 +103,7 @@ final_enriched_df <- enriched_scaled_df %>%
 ##------------------------------------------------------------------------------------------------
 ##  Write enriched dataframe to the /cache directory with version-controlled naming convention   -
 ##------------------------------------------------------------------------------------------------
-info(logger, "Writing enriched data to /enrich directory")
+info(logger, "Writing enriched data to /data_working directory")
 
-enriched_data_file_name <- get_versioned_file_name("cache", "enriched", ".feather")
+enriched_data_file_name <- get_versioned_file_name("data_working", "enriched", ".feather")
 final_enriched_df %>% write_feather(enriched_data_file_name)

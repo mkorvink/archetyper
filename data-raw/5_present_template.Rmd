@@ -8,10 +8,11 @@ output: pdf_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-source("R/common.R")
-#library(tidyverse)
 
-#testing_with_predictions <- read_csv(get_versioned_file_name("../data_output", #"testing_w_predictions", ".csv"))
+#library(kableExtra)
+#library(gtsummary)
+#source("common.R")
+#testing_with_predictions <- read_csv(str_c("../data_output/",project_name,"_testing_w_predictions_",Sys.Date(), ".csv"))
 
 ```
 

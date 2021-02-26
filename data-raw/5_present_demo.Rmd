@@ -10,11 +10,12 @@ output: pdf_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-source("R/common.R")
 library(kableExtra)
 library(gtsummary)
 
-testing_with_predictions <- read_csv(get_versioned_file_name("../data_output", "testing_w_predictions", ".csv"))
+source("common.R")
+
+testing_with_predictions <- readr::read_csv(stringr::str_c("../data_output/",project_name,"_testing_w_predictions_",Sys.Date(), ".csv"))
 
 round_to_two_decimals <- function(x){
   return(round(x,2))
@@ -41,7 +42,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non nisi a nis
 
 ## Results
 ```{r feature detail, echo=FALSE}
-read_feather(get_versioned_file_name("cache", "feature_dtl", ".feather")) %>%
+feather::read_feather(stringr::str_c("../data_output/",project_name,"_feature_dtl_",Sys.Date(), ".csv")) %>% 
   mutate(term = toupper(to_title_case(term)),
          term = str_replace_all(term, "HOSPITAL OWNERSHIP", ""),
          term = str_replace_all(term, "VOLUNTARY NON PROFIT", ""),
@@ -57,7 +58,7 @@ read_feather(get_versioned_file_name("cache", "feature_dtl", ".feather")) %>%
 In vulputate, ligula ac egestas euismod, quam enim placerat tellus, non gravida arcu odio ut nunc. Cras rhoncus sagittis sem, nec ornare turpis aliquet nec. Etiam ac magna nec dui laoreet ultrices sit amet ac purus. Cras et porttitor ipsum. Cras quis eleifend purus. Aenean vel dui ante. Sed aliquam ex a malesuada malesuada. Vivamus aliquam at lacus ut lobortis. Ut sed urna libero. 
 
 ```{r model detail, echo=FALSE}
-read_feather(get_versioned_file_name("cache", "perf", ".feather")) %>% 
+feather::read_feather(stringr::str_c("../data_output/",project_name,"_perf_",Sys.Date(), ".csv")) %>% 
   pivot_longer(everything()) %>% 
   mutate(value = round(value, 3)) %>% 
   rename_all(snakecase::to_title_case) %>%

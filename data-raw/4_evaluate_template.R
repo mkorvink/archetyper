@@ -8,7 +8,7 @@ source("R/common.R")
 ##  Apply testing partitions to the persisted model     -
 ##-------------------------------------------------------
 
-#testing_df <- read_feather(get_versioned_file_name("cache", "enriched", ".feather")) %>%
+#testing_df <- read_feather(get_versioned_file_name("data_working", "enriched", ".feather")) %>%
 #  filter(!training_ind) %>%
 #  dplyr::select(-training_ind)
 #

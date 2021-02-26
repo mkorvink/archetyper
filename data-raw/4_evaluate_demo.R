@@ -11,7 +11,7 @@ library(caret)
 ##-------------------------------------------------------
 info(logger, "Getting testing data for evaluation...")
 
-testing_df <- read_feather(get_versioned_file_name("cache", "enriched", ".feather")) %>%
+testing_df <- read_feather(get_versioned_file_name("data_working", "enriched", ".feather")) %>%
   filter(!training_ind) %>%
   dplyr::select(-training_ind, -rowname)
 
@@ -28,11 +28,11 @@ info(logger, "Writing test data with predictions to /data_output directory...")
 testing_df %>% write_csv(get_versioned_file_name("data_output", "testing_w_predictions", ".csv"))
 
 ##---------------------------------------------------------------------------------
-##  Write performance statistics using holdout data-set to the /cache directory   -
+##  Write performance statistics using holdout data-set to the /data_working directory   -
 ##---------------------------------------------------------------------------------
-info(logger, "Writing miscellaneous performance results to /cache directory...")
+info(logger, "Writing miscellaneous performance results to /data_output directory...")
 
 perf_df <- tibble(rmse = RMSE(testing_df$prediction, testing_df$response))
-perf_df %>% write_feather(get_versioned_file_name("cache", "holdout_perf_stats", ".csv"))
+perf_df %>% write_feather(get_versioned_file_name("data_output", "holdout_perf_stats", ".csv"))
 
 

@@ -6,7 +6,7 @@
 
 source("R/common.R")
 
-#integrated_df <- read_feather(get_versioned_file_name("cache", "integrated", ".feather"))
+#integrated_df <- read_feather(get_versioned_file_name("data_working", "integrated", ".feather"))
 
 ##-------------------------------------------------------------------------------------------------------
 ##  Feature engineering, outlier removal, imputation, feature selection, etc. (see demo for examples)   -
@@ -18,5 +18,5 @@ source("R/common.R")
 ##  Write enriched dataframe to the /cache directory with version-controlled naming convention   -
 ##--------------------------------------------------------------------------------------------------
 
-#enriched_data_file_name <- get_versioned_file_name("cache", "enriched", ".feather")
+#enriched_data_file_name <- get_versioned_file_name("data_working", "enriched", ".feather")
 #enriched_df %>% write_feather(enriched_data_file_name)

@@ -1,6 +1,7 @@
 library(testthat)
-library(archityper)
-test_check("archityper")
+library(stringr)
+library(archetyper)
+test_check("archetyper")
 
 is_valid_project_name <- function(project_name) {
   return(stringr::str_detect(project_name, "[\\\\|\\/|:|\\<|\\>|\\|]", negate = T) & stringr::str_starts(project_name, "\\.", negate = T))

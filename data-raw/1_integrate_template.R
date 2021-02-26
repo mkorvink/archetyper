@@ -14,8 +14,8 @@ info(logger, "Loading, integrating, and transforming source data...")
 info(logger, "Writing integrated data to /cache directory...")
 
 ##-------------------------------------------------------------------------------------------
-##  Write integrated data to the /cache directory. File name should be version controlled.  -
+##  Write integrated data to the /data_working directory. File name should be version controlled.  -
 ##-------------------------------------------------------------------------------------------
 
-#integrated_data_file_name <- get_versioned_file_name("cache", "integrated", ".feather")
+#integrated_data_file_name <- get_versioned_file_name("data_working", "integrated", ".feather")
 #integrated_df %>% write_feather(integrated_data_file_name)
