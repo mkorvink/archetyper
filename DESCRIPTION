@@ -26,7 +26,8 @@ Imports:
   testthat (>= 3.0.0),
   bannerCommenter,
   feather,
-  readr
+  readr,
+  ps
 RoxygenNote: 7.1.1
 Suggests: 
   MASS,

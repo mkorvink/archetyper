@@ -9,3 +9,4 @@
 ^data-raw$
 ^readme\.md$
 ^_pkgdown\.yml$
+^pkgdown$
