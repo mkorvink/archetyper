@@ -3,3 +3,9 @@
 ^doc$
 ^Meta$
 ^\.github$
+^codecov\.yml$
+^LICENSE\.md$
+^docs$
+^data-raw$
+^readme\.md$
+^_pkgdown\.yml$

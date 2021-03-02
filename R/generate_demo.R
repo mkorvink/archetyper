@@ -21,7 +21,7 @@ generate_demo <- function(path = ".") {
     stop(stringr::str_c("Project name: ", project_name , " already exists in directory ", project_directory))
   }
 
-  directory_vect <- c("data_input/", "data_working/", "data_output/", "models/", "docs/", "drivers/", "R/")
+  directory_vect <- c("data_input/", "data_working/", "data_output/", "models/", "docs/", "R/")
 
   dir.create(project_directory)
 
@@ -31,10 +31,10 @@ generate_demo <- function(path = ".") {
   }
 
   demo_vect <- c(test_demo, integrate_demo, enrich_demo, model_demo, evaluate_demo, present_demo,common_demo,
-    mediator_demo, utilities_demo, explore_demo, api_demo, lint_demo, gitignore_demo, readme_demo, config_demo, proj_demo)
+    mediator_demo, utilities_demo, explore_demo, api_demo, lint_demo, gitignore_demo, readme_demo,  proj_demo)
 
   names(demo_vect) <- c("0_test.R", "1_integrate.R", "2_enrich.R", "3_model.R", "4_evaluate.R", "5_present.Rmd", "common.R", "mediator.R", "utilities.R",
-                        "explore.R", "api.R", "lint.R", ".gitignore", "readme.md", "config.yml", stringr::str_c(project_name, ".Rproj"))
+                        "explore.R", "api.R", "lint.R", ".gitignore", "readme.md",  stringr::str_c(project_name, ".Rproj"))
 
   for (demo_index in seq_along(demo_vect)){
     demo_name <- names(demo_vect)[[demo_index]]

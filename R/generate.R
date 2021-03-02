@@ -1,10 +1,10 @@
 is_valid_project_name <- function(project_name) {
-  return(stringr::str_detect(project_name, "[\\\\|\\/|:|\\<|\\>|\\|]", negate = T) & stringr::str_starts(project_name, "\\.", negate = T))
+  return(stringr::str_detect(project_name, "[\\\\|\\/|:|\\<|\\>|\\|]", negate = TRUE) & stringr::str_starts(project_name, "\\.", negate = TRUE))
 }
 
 write_to_directory <-  function(template, file_name, exclude, project_directory) {
     if (length(exclude) > 0) {
-      if (max(stringr::str_detect(file_name, exclude)) == 0) {
+      if (!tolower(file_name) %in% tolower(exclude)) {
         readr::write_file(template,
                           stringr::str_c(project_directory, stringr::str_c("/", file_name)))
       }
@@ -45,11 +45,11 @@ generate <- function(project_name,
   dir.create(project_directory)
 
   if (db_connection_type == "jdbc"){
-    is_jdbc <- T
+    is_jdbc <- TRUE
   }
 
   if (db_connection_type == "odbc"){
-    is_odbc <- T
+    is_odbc <- TRUE
   }
 
   for (directory in directory_vect){

@@ -2,15 +2,18 @@
 
   <!-- badges: start -->
   [![R-CMD-check](https://github.com/mkorvink/archetyper/workflows/R-CMD-check/badge.svg)](https://github.com/mkorvink/archetyper/actions)
+  
+   
+  [![Codecov test coverage](https://codecov.io/gh/mkorvink/archetyper/branch/main/graph/badge.svg)](https://codecov.io/gh/mkorvink/archetyper?branch=main)
+
   <!-- badges: end -->
 
 ## Overview
 
 archetyper is a tool to initialize data mining projects by generating common workflow components and surrounding files to support technical best practices:
 
-  - `generate()` creates a new project with templated files and directories to support a data mining workflow.
+  - generate() creates a new project with templated files and directories to support a data mining workflow.
 
-You can learn more about archetyper in `vignette("archetyper")`.
 
 ### Development version
 
@@ -24,9 +27,10 @@ devtools::install_github("mkorvink/archetyper")
 
 ## Usage
 
+A new project can be instantiated using the generate() function.
+
 ``` r
  library(archetyper)
-
  archetyper::generate("majestic_12")
 
 > list.files("majestic_12/")
@@ -40,8 +44,23 @@ devtools::install_github("mkorvink/archetyper")
 
 
 ```
+A runnable demo project will be created with the generate_demo(). 
+
+``` r
+ archetyper::generate_demo()
+
+```
+
+You can learn more about archetyper in `vignette("archetyper")`.
+
 
 Acknowledgments
 ---------------
 
-This readme was modeled after the dplyr readme.  
+This readme was modeled after the dplyr readme.
+
+## Code of conduct
+
+Please note that this project is released with a [Contributor Code of
+Conduct](https://pkgdown.r-lib.org/CODE_OF_CONDUCT.html). By
+participating in this project you agree to abide by its terms.
