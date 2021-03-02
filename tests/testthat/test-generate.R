@@ -31,7 +31,6 @@ test_that("Project names cannot include a :", {
   expect_equal(is_valid_project_name("my : project"), F)
 })
 
-
 test_that("test_project_creation_expect_error", {
   test_project_name <- "my : project"
   expect_error(  generate(test_project_name, path = directory))
@@ -98,4 +97,5 @@ test_that("test_project_creation_expect_error", {
   expect_error(  generate(test_project_name, path = directory))
   ifelse(dir.exists(stringr::str_c(tempdir(), "/", test_project_name)),unlink(stringr::str_c(tempdir(), "/", test_project_name), recursive=TRUE), NA)
 })
+
 

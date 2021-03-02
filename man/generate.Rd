@@ -24,5 +24,7 @@ generate(
 generates a set of files and directories to support both the data mining work-flow and surrounding technical components.
 }
 \examples{
+\dontrun{
 generate("majestic_12")
+}
 }

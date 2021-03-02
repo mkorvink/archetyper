@@ -13,5 +13,7 @@ generate_demo(path = ".")
 generates a demo project using archetyper
 }
 \examples{
-generate_demo()
+\dontrun{
+generate("majestic_12")
+}
 }

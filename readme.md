@@ -31,7 +31,7 @@ A new project can be instantiated using the generate() function.
 
 ``` r
  library(archetyper)
- archetyper::generate("majestic_12")
+ #archetyper::generate("majestic_12")
 
 > list.files("majestic_12/")
 [1] "data_input"        "data_output"       "data_working"      "docs"             
@@ -47,7 +47,7 @@ A new project can be instantiated using the generate() function.
 A runnable demo project will be created with the generate_demo(). 
 
 ``` r
- archetyper::generate_demo()
+ #archetyper::generate_demo()
 
 ```
 

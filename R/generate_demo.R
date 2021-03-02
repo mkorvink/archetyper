@@ -9,7 +9,9 @@ write_to_dir <-
 #' @param path The path where the project should be created. Default is the current working directory.
 
 #' @examples
-#' generate_demo()
+#'\dontrun{
+#' generate("majestic_12")
+#'}
 #' @export
 generate_demo <- function(path = ".") {
 

@@ -20,9 +20,10 @@ write_to_directory <-  function(template, file_name, exclude, project_directory)
 #' @param db_connection_type A optional string indicating if a "JDBC" or "ODBC" connection will be used in the project.
 #' @param exclude A character vector of components to exclude from generation. Options include: "api", "config", "gitignore", "integrate", "lint", "mediator", "readme", "test", "utilities"
 #' @param path The path where the project should be created. Default is the current working directory.
-
 #' @examples
+#'\dontrun{
 #' generate("majestic_12")
+#'}
 #' @export
 generate <- function(project_name,
                      db_connection_type = "", #= c("jdbc", "odbc"),
