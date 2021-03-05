@@ -14,9 +14,9 @@ generate(
 \arguments{
 \item{project_name}{The name of the project to be generated.}
 
-\item{db_connection_type}{A optional string indicating if a "JDBC" or "ODBC" connection will be used in the project.}
+\item{db_connection_type}{A optional string indicating if a "JDBC" or "ODBC" connection will be used in the project. Options include: "jdbc" or "odbc"}
 
-\item{exclude}{A character vector of components to exclude from generation. Options include: "api", "config", "gitignore", "integrate", "lint", "mediator", "readme", "test", "utilities"}
+\item{exclude}{A character vector of components to exclude from generation. Options include: "0_test.R", "1_integrate.R", "2_enrich.R", "3_model.R", "4_evaluate.R", "5_present.Rmd", "common.R", "mediator.R", "utilities.R", "explore.R", "api.R", "lint.R", ".gitignore", "readme.md", "config.yml"}
 
 \item{path}{The path where the project should be created. Default is the current working directory.}
 }

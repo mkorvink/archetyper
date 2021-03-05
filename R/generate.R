@@ -17,8 +17,8 @@ write_to_directory <-  function(template, file_name, exclude, project_directory)
 #' generates a set of files and directories to support both the data mining work-flow and surrounding technical components.
 #'
 #' @param project_name The name of the project to be generated.
-#' @param db_connection_type A optional string indicating if a "JDBC" or "ODBC" connection will be used in the project.
-#' @param exclude A character vector of components to exclude from generation. Options include: "api", "config", "gitignore", "integrate", "lint", "mediator", "readme", "test", "utilities"
+#' @param db_connection_type A optional string indicating if a "JDBC" or "ODBC" connection will be used in the project. Options include: "jdbc" or "odbc"
+#' @param exclude A character vector of components to exclude from generation. Options include: "0_test.R", "1_integrate.R", "2_enrich.R", "3_model.R", "4_evaluate.R", "5_present.Rmd", "common.R", "mediator.R", "utilities.R", "explore.R", "api.R", "lint.R", ".gitignore", "readme.md", "config.yml"
 #' @param path The path where the project should be created. Default is the current working directory.
 #' @examples
 #'\dontrun{
@@ -26,7 +26,7 @@ write_to_directory <-  function(template, file_name, exclude, project_directory)
 #'}
 #' @export
 generate <- function(project_name,
-                     db_connection_type = "", #= c("jdbc", "odbc"),
+                     db_connection_type = "",
                      exclude = as.character(),
                      path = ".") {
 
@@ -75,6 +75,7 @@ generate <- function(project_name,
     template_name <- names(template_vect)[[template_index]]
 
     if (template_name == "config.yml" ){
+      #TODO: exclude if in exclude vector argument
       if (is_jdbc | is_odbc){
         write_to_directory(template_vect[[template_index]], template_name, exclude, project_directory)
       }

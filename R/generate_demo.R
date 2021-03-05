@@ -7,14 +7,12 @@ write_to_dir <-
 #' generates a demo project using archetyper
 #'
 #' @param path The path where the project should be created. Default is the current working directory.
-
 #' @examples
 #'\dontrun{
 #' generate("majestic_12")
 #'}
 #' @export
 generate_demo <- function(path = ".") {
-
   project_name <- "hospital_readmissions_demo"
   project_directory <- stringr::str_c(path, "/", project_name)
   project_r_directory <- stringr::str_c(project_directory, "/R")
@@ -26,7 +24,6 @@ generate_demo <- function(path = ".") {
   directory_vect <- c("data_input/", "data_working/", "data_output/", "models/", "docs/", "R/")
 
   dir.create(project_directory)
-
 
   for (directory in directory_vect){
       dir.create(stringr::str_c(project_directory, "/", directory))
