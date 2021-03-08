@@ -1,6 +1,6 @@
 Package: archetyper
 Type: Package
-Title: Generates a project template for data mining projects
+Title: Generates a project template for data science and data mining projects
 Version: 0.1.0
 Authors@R: c(
     person(given = "Michael", family = "Korvink", role = c("aut", "cre", "com"), email = "mkorvink@protonmail.com"),

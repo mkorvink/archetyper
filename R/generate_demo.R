@@ -29,7 +29,7 @@ generate_demo <- function(path = ".") {
       dir.create(stringr::str_c(project_directory, "/", directory))
   }
 
-  demo_vect <- c(test_demo, integrate_demo, enrich_demo, model_demo, evaluate_demo, present_demo,common_demo,
+  demo_vect <- c(test_demo, integrate_demo, enrich_demo, model_demo, evaluate_demo, present_demo, common_demo,
     mediator_demo, utilities_demo, explore_demo, api_demo, lint_demo, gitignore_demo, readme_demo,  proj_demo)
 
   names(demo_vect) <- c("0_test.R", "1_integrate.R", "2_enrich.R", "3_model.R", "4_evaluate.R", "5_present.Rmd", "common.R", "mediator.R", "utilities.R",

@@ -65,7 +65,7 @@ generate <- function(project_name,
 
   common_template <-  stringr::str_replace_all(common_template, "archetyper_proj_name", {{ project_name }})
 
-  template_vect <- c(test_template, integrate_template, enrich_template, model_template, evaluate_template, present_template,common_template,
+  template_vect <- c(test_template, integrate_template, enrich_template, model_template, evaluate_template, present_template, common_template,
     mediator_template, utilities_template, explore_template, api_template, lint_template, gitignore_template, readme_template, config_template, proj_template)
 
   names(template_vect) <- c("0_test.R", "1_integrate.R", "2_enrich.R", "3_model.R", "4_evaluate.R", "5_present.Rmd", "common.R", "mediator.R", "utilities.R",

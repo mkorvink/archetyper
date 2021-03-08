@@ -120,7 +120,7 @@ A database connection type of “odbc” or “jdbc” can be passed in as a fun
 
 If using JDBC, a directory for driver JARs named `/drivers` will also be created:
 
-*	`/drivers` is directory for storing database driver jars. Note that the user must provide the jars and classpath names to the jars specific to the database type being accessed.
+*	`drivers/` is directory for storing database driver jars. Note that the user must provide the jars and classpath names to the jars specific to the database type being accessed.
 
 
 ```{r, eval=TRUE, include=FALSE, message=FALSE, warning=FALSE}
@@ -179,19 +179,13 @@ if(dir.exists("hospital_readmissions_demo")){
 
 ```{r, eval=FALSE, include=TRUE}
 archetyper::generate_demo()
-list.files("hospital_readmissions_demo/)
-[1] "data_input"        "data_output"       "data_working"      "docs"              "majestic_12.Rproj"
+list.files("hospital_readmissions_demo/")
+[1] "data_input"        "data_output"       "data_working"      "docs"              "hospital_readmissions_demo.Rproj"
 [6] "models"            "R"                 "readme.md"        
 ```
 
-Once the demo project has been created, the project should be opened in RStudio. A set of publicly-available files is pre-loaded in the data_input directory:
+Once the demo project has been created, the project should be opened in RStudio. 
 
-```{r, eval=FALSE, include=TRUE, message=FALSE, warning=FALSE}
-list.files("hospital_readmissions_demo/data_input/")
-[1] "CMS_PSI_6_decimal_file.csv"            
-[2] "Hospital_General_Information.csv"      
-[3] "Unplanned_Hospital_Visits-Hospital.csv"
-```
 ### Running the demo workflow
 
 The the full data-mining/data-science life-cycle can be triggered by executing the `mediator.R` file. 
@@ -230,8 +224,7 @@ tryCatch({
 Note that the file includes a centralized logger is employed to distinguish levels of severity (using the log4r package) as well as relative directory references (using the here package). Comments in all files were created using the bannerCommenter package.
 
 ### Integration
-
-The integration step in the demo project sources the raw hospital files in the data_input/ directory, transforms them into according to Tidy Data principles, and persists the integrated data into the /data_working directory.
+A set of publicly-available data files will be loaded by the integration.R file. The integration step joins and transforms the source files according to Tidy Data principles, and persists the integrated data into the data_working/ directory.
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, include=T}
 > list.files("data_working/")
@@ -240,7 +233,7 @@ The integration step in the demo project sources the raw hospital files in the d
 
 ### Enrichment
 
-The enrichment step creates features better suited for the modeling process by applying feature engineering methods (such as scaling and centering the numeric features), outlier removal (using Cook's Distance), imputation (using predictive mean matching PMM), and feature selection (by removing highly correlated features).  Additionally, training labels are assigned through stratified random sampling.  The enriched results are stored in feather format in the /data_working directory.
+The enrichment step creates features better suited for the modeling process by applying feature engineering methods (such as scaling and centering the numeric features), outlier removal (using Cook's Distance), imputation (using predictive mean matching PMM), and feature selection (by removing highly correlated features).  Additionally, training labels are assigned through stratified random sampling.  The enriched results are stored in feather format in the data_working/ directory.
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, include=T}
 > list.files("data_working/")

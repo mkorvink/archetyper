@@ -21,9 +21,7 @@ api_demo <- read_file("api_demo.R")
 gitignore_demo <- read_file("gitignore_demo.txt")
 config_demo <- read_file("config_demo.yml")
 readme_demo <- read_file("readme_demo.md")
-complication_demo_file <- read_csv("CMS_PSI_6_decimal_file.csv")
-hospital_general_demo_file <- read_csv("Hospital_General_Information.csv")
-readmission_demo_file <- read_csv("Unplanned_Hospital_Visits-Hospital.csv")
+
 
 #Template files
 common_template <- read_file("common_template.R")
@@ -61,9 +59,6 @@ usethis::use_data(
   readme_demo,
   config_demo,
   proj_demo,
-  complication_demo_file,
-  hospital_general_demo_file,
-  readmission_demo_file,
   common_template,
   test_template,
   integrate_template,
