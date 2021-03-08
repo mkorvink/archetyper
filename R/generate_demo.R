@@ -44,8 +44,4 @@ generate_demo <- function(path = ".") {
       write_to_dir(demo_vect[[demo_index]], demo_name, project_directory)
     }
   }
-
-   readr::write_csv(hospital_general_demo_file, stringr::str_c(project_directory, "/data_input/Hospital_General_Information.csv"))
-   readr::write_csv(complication_demo_file, stringr::str_c(project_directory, "/data_input/CMS_PSI_6_decimal_file.csv"))
-   readr::write_csv(readmission_demo_file, stringr::str_c(project_directory, "/data_input/Unplanned_Hospital_Visits-Hospital.csv" ))
 }

@@ -13,21 +13,25 @@
 ##-------------------------------------------------------------------------------------------------------------------------------------------------
 
 source("R/common.R")
+library(RCurl)
 
 info(logger, "Loading, integrating, and transforming source data...")
 
-hospital_info_df <- read_csv("data_input/Hospital_General_Information.csv") %>%
+hospital_info_url <- getURL("https://raw.githubusercontent.com/mkorvink/archetyper-data/main/Hospital_General_Information.csv")
+hospital_info_df <- read_csv(hospital_info_url) %>%
   rename_all(to_any_case) %>%
   dplyr::select(facility_id, state, hospital_type, hospital_ownership, emergency_services,
                 meets_criteria_for_promoting_interoperability_of_eh_rs) %>%
   rename(ehr_interop = meets_criteria_for_promoting_interoperability_of_eh_rs)
 
-readmission_df <- read_csv("data_input/Unplanned_Hospital_Visits-Hospital.csv") %>%
+readmission_url <- getURL("https://raw.githubusercontent.com/mkorvink/archetyper-data/main/Unplanned_Hospital_Visits-Hospital.csv")
+readmission_df <- read_csv(readmission_url) %>%
   rename_all(to_any_case) %>%
   filter(measure_id == "READM_30_HOSP_WIDE") %>%
   dplyr::select(facility_id, denominator, score)
 
-complications_df <- read_csv("data_input/CMS_PSI_6_decimal_file.csv") %>%
+complication_url <- getURL("https://raw.githubusercontent.com/mkorvink/archetyper-data/main/CMS_PSI_6_decimal_file.csv")
+complications_df <- read_csv(complication_url) %>%
   rename_all(to_any_case) %>%
   dplyr::select(facility_id, measure_id, rate) %>%
   mutate(measure_id = str_replace_all(measure_id, "-", "_")) %>%
