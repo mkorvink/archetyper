@@ -17,8 +17,8 @@ To get a bug fix or use a feature from the development version, you
 can install the development version of archetyper from GitHub.
 
 ``` r
-> #install.packages("devtools")
-> devtools::install_github("mkorvink/archetyper")
+#install.packages("devtools")
+#> devtools::install_github("mkorvink/archetyper")
 ```
 
 ## Usage
@@ -26,15 +26,16 @@ can install the development version of archetyper from GitHub.
 A new project can be instantiated using the generate() function.
 
 ``` r
-> library(archetyper)
+#> library(archetyper)
 
-> archetyper::generate("majestic_12")
+#> archetyper::generate("majestic_12")
 
-> list.files("majestic_12/")
+#> list.files("majestic_12/")
 [1] "data_input"        "data_output"       "data_working"      "docs"             
 [5] "majestic_12.Rproj" "models"            "R"                 "readme.md"
+[9] ".gitignore"
 
-> list.files("majestic_12/R")
+#> list.files("majestic_12/R")
  [1] "0_test.R"      "1_integrate.R" "2_enrich.R"    "3_model.R"     "4_evaluate.R" 
  [6] "5_present.Rmd" "api.R"         "common.R"      "explore.R"     "lint.R"       
 [11] "mediator.R"    "utilities.R"
@@ -42,7 +43,7 @@ A new project can be instantiated using the generate() function.
 A runnable demo project will be created with the generate_demo(). 
 
 ``` r
-> archetyper::generate_demo()
+#> archetyper::generate_demo()
 ```
 You can learn more about archetyper in `vignette("archetyper")`.
 
