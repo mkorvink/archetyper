@@ -13,4 +13,4 @@ https://mkorvink.github.io/archetyper/index.html
 
 ## Downstream dependencies
 
-There are no downstream dependencies for the archetyper package.
+“There are currently no downstream dependencies for this package”
