@@ -61,9 +61,9 @@ if(dir.exists("majestic_12")){
 ```{r, eval=FALSE, include=TRUE, message=FALSE, warning=FALSE}
 generate("majestic_12")
 
-list.files("majestic_12")
+list.files(project_path)
 [1] "data_input"        "data_output"       "data_working"      "docs"              "majestic_12.Rproj"
-[6] "models"            "R"                 "readme.md"      ".gitignore"        
+[6] "models"            "R"                 "readme.md"        
 ```
 
 The R code for the data mining workflow will be in the /R directory.
@@ -136,7 +136,7 @@ list.files(project_path)
  [1] "config.yml"        "data_input"        "data_output"      
  [4] "data_working"      "docs"              "drivers"          
  [7] "majestic_12.Rproj" "models"            "R"                
-[10] "readme.md"         ".gitignore"
+[10] "readme.md"  
 
 ```
 
@@ -152,14 +152,14 @@ if(dir.exists("majestic_12")){
 ```
 
 ```{r, eval=FALSE, include=TRUE}
-generate(project_name = project_name, path = project_directory, exclude = c("api.R", "utilities.R", "readme.md", "lint.R", "gitignore"))
+generate(project_name = project_name, path = project_directory, exclude = c("api", "utilities", "readme", "lint", "gitignore"))
 
 list.files(project_path)
 [1] "data_input"        "data_output"       "data_working"      "docs"              "majestic_12.Rproj"
-[6] "models"            "R"
+[6] "models"            "R"                 "readme.md"    
 list.files(project_path_r)
  [1] "0_test.R"      "1_integrate.R" "2_enrich.R"    "3_model.R"     "4_evaluate.R"  "5_present.Rmd"
- [7] "common.R"      "explore.R"     "mediator.R"
+ [7] "api.R"         "common.R"      "explore.R"     "lint.R"        "mediator.R"    "utilities.R"  
 ```
 
 ## Generating the demo project
@@ -181,7 +181,7 @@ if(dir.exists("hospital_readmissions_demo")){
 archetyper::generate_demo()
 list.files("hospital_readmissions_demo/")
 [1] "data_input"        "data_output"       "data_working"      "docs"              "hospital_readmissions_demo.Rproj"
-[6] "models"            "R"                 "readme.md"        ".gitignore"
+[6] "models"            "R"                 "readme.md"        
 ```
 
 Once the demo project has been created, the project should be opened in RStudio. 
@@ -273,7 +273,14 @@ Finally, an R Markdown report is produced, using files sourced from the data_out
 
 ### Deployment
 
-The api.R file generates a sample RESTful api that uses the trained model from the models/ directory. The demo api can be called with the below sample request body:
+The api.R file generates a sample RESTful api that uses the trained model from the models/ directory.  
+
+```{r eval=T, message=FALSE, warning=FALSE, include=T}
+#Deploy
+list.files("hospital_readmissions_demo/R/")
+```
+
+The demo api can be called with the below sample request body:
 
 ```{r eval=F, message=FALSE, warning=FALSE, include=T}
 {
