@@ -226,7 +226,7 @@ Note that the file includes a centralized logger to distinguish levels of severi
 ### Integration
 A set of publicly-available data files will be loaded by the integration.R file. The integration step joins and transforms the source files according to Tidy Data principles, and persists the integrated data into the data_working/ directory.
 
-```{r eval=FALSE, message=FALSE, warning=FALSE, include=T}
+```{r, eval=FALSE, message=FALSE, warning=FALSE, include=T}
 > list.files("data_working/")
 [1] "hospital_readmissions_integrated_2021-02-25.feather"    
 ```
@@ -235,7 +235,7 @@ A set of publicly-available data files will be loaded by the integration.R file.
 
 The enrichment step creates features better suited for the modeling process by applying feature engineering methods (such as scaling and centering the numeric features), outlier removal (using Cook's Distance), imputation (using predictive mean matching PMM), and feature selection (by removing highly-correlated features).  Additionally, training labels are assigned through stratified random sampling.  The enriched results are stored in feather format in the data_working/ directory.
 
-```{r eval=FALSE, message=FALSE, warning=FALSE, include=T}
+```{r, eval=FALSE, message=FALSE, warning=FALSE, include=T}
 > list.files("data_working/")
 [1] "hospital_readmissions_enriched_2021-02-25.feather"       "hospital_readmissions_integrated_2021-02-25.feather" 
 ```
@@ -244,7 +244,7 @@ The enrichment step creates features better suited for the modeling process by a
 
 In the modeling step, a stepwise linear regression is applied to the training partition of the enriched dataset. The model coefficients, performance statistics, and the model itself is stored in the data_output/ and /models directories (respectively).
 
-```{r eval=FALSE, message=FALSE, warning=FALSE, include=T}
+```{r, eval=FALSE, message=FALSE, warning=FALSE, include=T}
 > list.files("data_ouput/")
 [1] "hospital_readmissions_feature_dtl_2021-02-25.csv"   "hospital_readmissions_perf_2021-02-25.csv"
 
@@ -255,7 +255,7 @@ In the modeling step, a stepwise linear regression is applied to the training pa
 
 In the evaluation step, the testing partitions of the enriched dataset are applied to the trained model from the models/ directory. The testing data with the appended predictions, along with performance statistics from the testing dataset, are stored in the data_output/ directory as a .csv file. 
 
-```{r eval=FALSE, message=FALSE, warning=FALSE, include=T}
+```{r, eval=FALSE, message=FALSE, warning=FALSE, include=T}
 > list.files("data_ouput/")
 [1] "hospital_readmissions_feature_dtl_2021-02-25.csv"   "hospital_readmissions_holdout_perf_stats_2021-02-25.csv"
 [3] "hospital_readmissions_perf_2021-02-25.csv"    "hospital_readmissions_testing_w_predictions_2021-02-25.csv"
@@ -265,7 +265,7 @@ In the evaluation step, the testing partitions of the enriched dataset are appli
 
 Finally, an R Markdown report is produced, using files sourced from the data_output/ directory.
 
-```{r eval=FALSE, message=FALSE, warning=FALSE, include=T}
+```{r, eval=FALSE, message=FALSE, warning=FALSE, include=T}
 #Present
 > list.files("hospital_readmissions_demo/docs/")
 [1] "5_present.pdf"
@@ -275,7 +275,7 @@ Finally, an R Markdown report is produced, using files sourced from the data_out
 
 The api.R file generates a sample RESTful api that uses the trained model from the models/ directory. The demo api can be called with the below sample request body:
 
-```{r eval=F, message=FALSE, warning=FALSE, include=T}
+```{r, eval=F, message=FALSE, warning=FALSE, include=T}
 {
   "dt": {"state": "AL",
     "hospital_type": "acute_care_hospitals",

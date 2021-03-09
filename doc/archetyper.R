@@ -93,32 +93,32 @@ if(dir.exists("hospital_readmissions_demo")){
 #    }
 #  )
 
-## ----eval=FALSE, message=FALSE, warning=FALSE, include=T----------------------
+## ---- eval=FALSE, message=FALSE, warning=FALSE, include=T---------------------
 #  > list.files("data_working/")
 #  [1] "hospital_readmissions_integrated_2021-02-25.feather"
 
-## ----eval=FALSE, message=FALSE, warning=FALSE, include=T----------------------
+## ---- eval=FALSE, message=FALSE, warning=FALSE, include=T---------------------
 #  > list.files("data_working/")
 #  [1] "hospital_readmissions_enriched_2021-02-25.feather"       "hospital_readmissions_integrated_2021-02-25.feather"
 
-## ----eval=FALSE, message=FALSE, warning=FALSE, include=T----------------------
+## ---- eval=FALSE, message=FALSE, warning=FALSE, include=T---------------------
 #  > list.files("data_ouput/")
 #  [1] "hospital_readmissions_feature_dtl_2021-02-25.csv"   "hospital_readmissions_perf_2021-02-25.csv"
 #  
 #  > list.files("mod/")
 #  [1] "hospital_readmissions_readmissions_2021-02-23.mod"
 
-## ----eval=FALSE, message=FALSE, warning=FALSE, include=T----------------------
+## ---- eval=FALSE, message=FALSE, warning=FALSE, include=T---------------------
 #  > list.files("data_ouput/")
 #  [1] "hospital_readmissions_feature_dtl_2021-02-25.csv"   "hospital_readmissions_holdout_perf_stats_2021-02-25.csv"
 #  [3] "hospital_readmissions_perf_2021-02-25.csv"    "hospital_readmissions_testing_w_predictions_2021-02-25.csv"
 
-## ----eval=FALSE, message=FALSE, warning=FALSE, include=T----------------------
+## ---- eval=FALSE, message=FALSE, warning=FALSE, include=T---------------------
 #  #Present
 #  > list.files("hospital_readmissions_demo/docs/")
 #  [1] "5_present.pdf"
 
-## ----eval=F, message=FALSE, warning=FALSE, include=T--------------------------
+## ---- eval=F, message=FALSE, warning=FALSE, include=T-------------------------
 #  {
 #    "dt": {"state": "AL",
 #      "hospital_type": "acute_care_hospitals",
