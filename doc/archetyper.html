@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
-<meta name="date" content="2021-03-08" />
+<meta name="date" content="2021-03-09" />
 
 <title>Introduction to archetyper</title>
 
@@ -42,7 +42,14 @@ document.addEventListener('DOMContentLoaded', function() {
     </style>
 
 
-<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
 <style type="text/css" data-origin="pandoc">
 code.sourceCode > span { display: inline-block; line-height: 1.25; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -327,7 +334,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 <h1 class="title toc-ignore">Introduction to archetyper</h1>
-<h4 class="date">2021-03-08</h4>
+<h4 class="date">2021-03-09</h4>
 
 
 
@@ -359,10 +366,10 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <p>generate will produce a set of files and directories to support both the data mining workflow and surrounding technical components.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">generate</span>(<span class="st">&quot;majestic_12&quot;</span>)</span>
 <span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="kw">list.files</span>(project_path)</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="kw">list.files</span>(<span class="st">&quot;majestic_12&quot;</span>)</span>
 <span id="cb2-4"><a href="#cb2-4"></a>[<span class="dv">1</span>] <span class="st">&quot;data_input&quot;</span>        <span class="st">&quot;data_output&quot;</span>       <span class="st">&quot;data_working&quot;</span>      <span class="st">&quot;docs&quot;</span>              <span class="st">&quot;majestic_12.Rproj&quot;</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a>[<span class="dv">6</span>] <span class="st">&quot;models&quot;</span>            <span class="st">&quot;R&quot;</span>                 <span class="st">&quot;readme.md&quot;</span>        </span></code></pre></div>
-<p>The R code for the data mining workflow will be in the /R directory.</p>
+<span id="cb2-5"><a href="#cb2-5"></a>[<span class="dv">6</span>] <span class="st">&quot;models&quot;</span>            <span class="st">&quot;R&quot;</span>                 <span class="st">&quot;readme.md&quot;</span>      <span class="st">&quot;.gitignore&quot;</span>        </span></code></pre></div>
+<p>The R code for the data workflow will be in the R/ directory.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">list.files</span>(<span class="st">&quot;majestic_12/R/&quot;</span>)</span>
 <span id="cb3-2"><a href="#cb3-2"></a></span>
 <span id="cb3-3"><a href="#cb3-3"></a> [<span class="dv">1</span>] <span class="st">&quot;0_test.R&quot;</span>      <span class="st">&quot;1_integrate.R&quot;</span> <span class="st">&quot;2_enrich.R&quot;</span>    <span class="st">&quot;3_model.R&quot;</span>    </span>
@@ -370,43 +377,43 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <span id="cb3-5"><a href="#cb3-5"></a> [<span class="dv">9</span>] <span class="st">&quot;explore.R&quot;</span>     <span class="st">&quot;lint.R&quot;</span>        <span class="st">&quot;mediator.R&quot;</span>    <span class="st">&quot;utilities.R&quot;</span>  </span></code></pre></div>
 <p>The base work-flow files include integrate.R, enrich.R, model.R, evaluate.R, present.Rmd, and api.R.</p>
 <ul>
-<li><code>1_integrate.R</code> is responsible for acquiring and integrating data across data sources and standardizing data types and naming conventions of columnar data. The output of the integration step is a two-by-two tibble, with rows as observations and columns as raw candidate features, saved in version-controlled feather format to the /data_working directory for downstream use.</li>
-<li><code>2_enrich.R</code> is responsible for reading integrated data from the <code>data_working/</code> directory an enriching the raw features into more informative features specific to the model being applied. Tasks in this stage might include feature engineering, outlier removal, imputation, feature selection, and the assignment of testing partition labels. As with the integration step, the output of the integration step is a two-by-two tibble object saved as a version-controlled feather file in the <code>data_working/</code> directory for downstream use.</li>
-<li><code>3_model.R</code> should read the training partitions from the enriched dataset stored in the <code>data_working/</code> directory and trains the desired model. Model objects generated within the model.R file should be stored in the <code>models/</code> directory using consistent version control and naming conventions.</li>
-<li><code>4_evaluate.R</code> should read the testing partitions from the enriched dataset stored in the <code>data_working/</code> directory and apply the trained model from the <code>model/</code> directory. Model results are appended to the testing dataset and are persisted as a .csv file in the <code>data_output/</code> directory. A feather file is not generated in this step as this data may be shared with non-technical stakeholders directly. Visualizations related to performance on the testing dataset, such as ROC Curves and box-plots, model metadata (e.g. coefficients) may be generated at this phase and persisted in the <code>data_working/</code> directory.</li>
-<li><code>5_present.Rmd</code> is an RMarkdown document template that demonstrates the assembly of data and charts stored within both the <code>data_working/</code> and <code>data_output/</code> directory.<br />
+<li><code>1_integrate.R</code> is responsible for acquiring and integrating data across data sources as well as standardizing data types and naming conventions of columnar data. The output of the integration step is a two-by-two tibble, with rows as observations and columns as raw candidate features, saved in version-controlled feather format to the <code>data_working/</code> directory for downstream use.</li>
+<li><code>2_enrich.R</code> is responsible for reading integrated data from the <code>data_working/</code> directory and enriching the raw features into more informative features specific to the model being applied. Tasks in this stage might include feature engineering, outlier removal, imputation, feature selection, and the assignment of testing partition labels. As with the integration step, the output of the integration step is a two-by-two tibble object saved as a version-controlled feather file in the <code>data_working/</code> directory for downstream use.</li>
+<li><code>3_model.R</code> should read the training partitions from the enriched dataset stored in the <code>data_working/</code> directory and train the desired model(s). Model objects generated within the model.R file should be stored in the <code>models/</code> directory using consistent version control and naming conventions.</li>
+<li><code>4_evaluate.R</code> should read the testing partitions from the enriched dataset stored in the <code>data_working/</code> directory and apply the trained model from the <code>model/</code> directory. Model results are appended to the testing dataset and are persisted as a .csv file in the <code>data_output/</code> directory. A feather file is not generated in this step as this data may be shared with non-technical stakeholders directly. Visualizations related to performance on the testing dataset, such as ROC Curves and box-plots, and model metadata (e.g. coefficients) may be generated at this phase and persisted in the <code>data_working/</code> directory.</li>
+<li><code>5_present.Rmd</code> is an RMarkdown document template that demonstrates the assembly of data and charts stored within the <code>data_output/</code> directory.<br />
 </li>
 <li><code>explore.R</code> exists outside of the sequential work-flow and is used primarily for transient data analysis needed for data integration and feature preparation.</li>
 <li><code>api.R</code> is a RESTful api template generated by archetyper. The API can be tested locally or deployed to an internal server. Note that the <code>archetyper</code> API template does not enforce authentication and authorization and therefore developers should consult with their security team prior to deploying an API within their organization. The RESTful service in the <code>api.R</code> file is implemented using the <code>plumber</code> library.</li>
 </ul>
 <p>Additional files are created to serve supporting functions:</p>
 <ul>
-<li><code>test.R</code> stores unit and integration tests with an example unit test using the testthat library.</li>
-<li><code>mediator.R</code> is responsible for the contiguous execution of each component, with conditions to stop execution upon failure at any step. The <code>mediator.R</code> file is named after the Gang of Four mediator pattern as it orchestrates calls to each component and enforces isolation between them. The mediator.R file further executes unit tests prior to the execution of the work-flow. In the final step, the present.Rmd file will be executed with its output stored into the <code>docs/</code> directory.</li>
+<li><code>test.R</code> stores unit and integration tests with an example unit test (using the testthat library).</li>
+<li><code>mediator.R</code> is responsible for the contiguous execution of each component, with conditions to stop execution upon failure at any step. The <code>mediator.R</code> file is named after the Gang of Four mediator pattern as it orchestrates calls to each component and enforces isolation between those components. The mediator.R file further executes unit tests prior to the execution of the work-flow. In the final step, the present.Rmd file will be executed with its output (a PDF document for example) stored into the <code>docs/</code> directory.</li>
 <li><code>common.R</code> is responsible for identifying libraries common across components (e.g. <code>dplyr</code>, <code>stringr</code>, <code>magittr</code>, etc.), storing project constants, inheriting utilities, and initializing a centralized logger. Each component in the work-flow sources the common.R file.</li>
 <li><code>utilities.R</code> is designed to store functions that are necessary across components. The <code>common.R</code> file sources the utilities.R file, and in turn, each file in the work-flow sourcing common.R also has access to the common utility methods.</li>
-<li><code>.gitignore</code> excludes ignores files that should not be in version control, including <code>config.yml</code>. The base .gitignore file included in the archetyper template was generated from the <code>gitignore</code> r package.</li>
-<li><code>lint.R</code> includes linting commands for each file in the work-flow to enforce proper style and syntax conventions</li>
+<li><code>.gitignore</code> ignores files that should not be stored in version control, including <code>config.yml</code>. The base .gitignore file included in the archetyper template was generated from the gitignore r package.</li>
+<li><code>lint.R</code> includes linting commands for each file in the work-flow to enforce proper style and syntax conventions.</li>
 <li><code>readme.md</code> is designed to provide project documentation and details on how the user will interact with the code.</li>
-<li><code>.Rproj</code> is a file indicating that the directory includes an R project and includes metadata related to the project itself. This file further serves as the marker of the root directory so that relative directories can be used in the project’s .R files (supported by the <code>here</code> package).</li>
+<li><code>.Rproj</code> is a file indicating that the directory includes an R project and includes metadata related to the project itself. This file further serves as the marker of the root directory so that relative directories can be used in the project’s .R files. Relative directories are supported by the <code>here</code> package.</li>
 </ul>
-<p>A directory structure designed to logically separate the data artifacts produced throughout the work-flow. These directories include:</p>
+<p>A directory structure designed to logically separate the data artifacts produced throughout the work-flow is also generated by the archetyper package. These directories include:</p>
 <ul>
 <li><code>data_input/</code> is used to store unprocessed data read in through the <code>integration.R</code> file</li>
 <li><code>data_working/</code> stores working data throughout the data mining workflow. This data includes versioned snapshots of both integrated and enriched data as well as other files and objects that might be necessary to present findings from the model.</li>
-<li><code>models/</code> stores version controlled model objects</li>
+<li><code>models/</code> stores version-controlled model objects.</li>
 <li><code>data_output/</code> stores version-controlled plain-text files with the appended model results.</li>
 <li><code>docs/</code> stores the output of R Markdown files (and other documents resulting from the analysis)</li>
 </ul>
-<p>For traceability, files and object (e.g. models) throughout the project are named according to a standard naming convention.</p>
+<p>For traceability, files and objects (e.g. models) throughout the project are named according to a standard naming convention.</p>
 <p><code>[ project_name ]_[ file_name ]_[ YYYY_MM_DD_HH:MM ].[ file_extension ]</code></p>
 <p>This structure, in conjunction with the persistent state of each component, allows each component script to be run independently without sourcing all the preceding components.</p>
 <div id="database-connections" class="section level3">
 <h3>Database connections</h3>
 <p>A database connection type of “odbc” or “jdbc” can be passed in as a function argument to generate scaffolding helpful for database connections. The following files will be generated with a “odbc” or ‘jdbc” argument:</p>
 <ul>
-<li><code>dml_ddl.sql</code> for storing SQL statements and other database scripts used to prepare and extract data from the source systems.</li>
-<li><code>config.yml</code> for storing secret database.</li>
+<li><code>dml_ddl.sql</code> stores SQL statements and other database scripts used to prepare and extract data from the source systems.</li>
+<li><code>config.yml</code> stores secret information, such as user database credentials.</li>
 </ul>
 <p>If using JDBC, a directory for driver JARs named <code>/drivers</code> will also be created:</p>
 <ul>
@@ -418,19 +425,19 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <span id="cb4-4"><a href="#cb4-4"></a> [<span class="dv">1</span>] <span class="st">&quot;config.yml&quot;</span>        <span class="st">&quot;data_input&quot;</span>        <span class="st">&quot;data_output&quot;</span>      </span>
 <span id="cb4-5"><a href="#cb4-5"></a> [<span class="dv">4</span>] <span class="st">&quot;data_working&quot;</span>      <span class="st">&quot;docs&quot;</span>              <span class="st">&quot;drivers&quot;</span>          </span>
 <span id="cb4-6"><a href="#cb4-6"></a> [<span class="dv">7</span>] <span class="st">&quot;majestic_12.Rproj&quot;</span> <span class="st">&quot;models&quot;</span>            <span class="st">&quot;R&quot;</span>                </span>
-<span id="cb4-7"><a href="#cb4-7"></a>[<span class="dv">10</span>] <span class="st">&quot;readme.md&quot;</span>  </span></code></pre></div>
+<span id="cb4-7"><a href="#cb4-7"></a>[<span class="dv">10</span>] <span class="st">&quot;readme.md&quot;</span>         <span class="st">&quot;.gitignore&quot;</span></span></code></pre></div>
 </div>
 <div id="excluding-components" class="section level3">
 <h3>Excluding components</h3>
 <p>The <code>exclude</code> argument prevents specified files from being generated.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">generate</span>(<span class="dt">project_name =</span> project_name, <span class="dt">path =</span> project_directory, <span class="dt">exclude =</span> <span class="kw">c</span>(<span class="st">&quot;api&quot;</span>, <span class="st">&quot;utilities&quot;</span>, <span class="st">&quot;readme&quot;</span>, <span class="st">&quot;lint&quot;</span>, <span class="st">&quot;gitignore&quot;</span>))</span>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">generate</span>(<span class="dt">project_name =</span> project_name, <span class="dt">path =</span> project_directory, <span class="dt">exclude =</span> <span class="kw">c</span>(<span class="st">&quot;api.R&quot;</span>, <span class="st">&quot;utilities.R&quot;</span>, <span class="st">&quot;readme.md&quot;</span>, <span class="st">&quot;lint.R&quot;</span>, <span class="st">&quot;.gitignore&quot;</span>))</span>
 <span id="cb5-2"><a href="#cb5-2"></a></span>
 <span id="cb5-3"><a href="#cb5-3"></a><span class="kw">list.files</span>(project_path)</span>
 <span id="cb5-4"><a href="#cb5-4"></a>[<span class="dv">1</span>] <span class="st">&quot;data_input&quot;</span>        <span class="st">&quot;data_output&quot;</span>       <span class="st">&quot;data_working&quot;</span>      <span class="st">&quot;docs&quot;</span>              <span class="st">&quot;majestic_12.Rproj&quot;</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a>[<span class="dv">6</span>] <span class="st">&quot;models&quot;</span>            <span class="st">&quot;R&quot;</span>                 <span class="st">&quot;readme.md&quot;</span>    </span>
+<span id="cb5-5"><a href="#cb5-5"></a>[<span class="dv">6</span>] <span class="st">&quot;models&quot;</span>            <span class="st">&quot;R&quot;</span></span>
 <span id="cb5-6"><a href="#cb5-6"></a><span class="kw">list.files</span>(project_path_r)</span>
 <span id="cb5-7"><a href="#cb5-7"></a> [<span class="dv">1</span>] <span class="st">&quot;0_test.R&quot;</span>      <span class="st">&quot;1_integrate.R&quot;</span> <span class="st">&quot;2_enrich.R&quot;</span>    <span class="st">&quot;3_model.R&quot;</span>     <span class="st">&quot;4_evaluate.R&quot;</span>  <span class="st">&quot;5_present.Rmd&quot;</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a> [<span class="dv">7</span>] <span class="st">&quot;api.R&quot;</span>         <span class="st">&quot;common.R&quot;</span>      <span class="st">&quot;explore.R&quot;</span>     <span class="st">&quot;lint.R&quot;</span>        <span class="st">&quot;mediator.R&quot;</span>    <span class="st">&quot;utilities.R&quot;</span>  </span></code></pre></div>
+<span id="cb5-8"><a href="#cb5-8"></a> [<span class="dv">7</span>] <span class="st">&quot;common.R&quot;</span>      <span class="st">&quot;explore.R&quot;</span>     <span class="st">&quot;mediator.R&quot;</span></span></code></pre></div>
 </div>
 </div>
 <div id="generating-the-demo-project" class="section level2">
@@ -440,16 +447,16 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>archetyper<span class="op">::</span><span class="kw">generate_demo</span>()</span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="kw">list.files</span>(<span class="st">&quot;hospital_readmissions_demo/&quot;</span>)</span>
 <span id="cb6-3"><a href="#cb6-3"></a>[<span class="dv">1</span>] <span class="st">&quot;data_input&quot;</span>        <span class="st">&quot;data_output&quot;</span>       <span class="st">&quot;data_working&quot;</span>      <span class="st">&quot;docs&quot;</span>              <span class="st">&quot;hospital_readmissions_demo.Rproj&quot;</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a>[<span class="dv">6</span>] <span class="st">&quot;models&quot;</span>            <span class="st">&quot;R&quot;</span>                 <span class="st">&quot;readme.md&quot;</span>        </span></code></pre></div>
+<span id="cb6-4"><a href="#cb6-4"></a>[<span class="dv">6</span>] <span class="st">&quot;models&quot;</span>            <span class="st">&quot;R&quot;</span>                 <span class="st">&quot;readme.md&quot;</span>        <span class="st">&quot;.gitignore&quot;</span></span></code></pre></div>
 <p>Once the demo project has been created, the project should be opened in RStudio.</p>
 <div id="running-the-demo-workflow" class="section level3">
 <h3>Running the demo workflow</h3>
 <p>The the full data-mining/data-science life-cycle can be triggered by executing the <code>mediator.R</code> file. The contents of the <code>mediator.R</code> file is below:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">cat</span>(<span class="kw">readChar</span>(<span class="st">&quot;hospital_readmissions_demo/R/mediator.R&quot;</span>), <span class="fl">1e5</span>)<span class="er">)</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="co">##----------------------------------------------------------------------</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="co">##  The mediator file will execute the linear data mining work-flow.   -</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="co">##----------------------------------------------------------------------</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="co">##--------------------------------------------------------------------------</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="co">##  The mediator file will execute the linear data processing work-flow.   -</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="co">##--------------------------------------------------------------------------</span></span>
 <span id="cb7-6"><a href="#cb7-6"></a></span>
 <span id="cb7-7"><a href="#cb7-7"></a><span class="kw">source</span>(<span class="st">&quot;R/common.R&quot;</span>)</span>
 <span id="cb7-8"><a href="#cb7-8"></a><span class="kw">tryCatch</span>({</span>
@@ -472,7 +479,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <span id="cb7-25"><a href="#cb7-25"></a>    log4r<span class="op">::</span><span class="kw">error</span>(logger, <span class="kw">str_c</span>(<span class="st">&quot;Script error: &quot;</span>, cond))</span>
 <span id="cb7-26"><a href="#cb7-26"></a>  }</span>
 <span id="cb7-27"><a href="#cb7-27"></a>)</span></code></pre></div>
-<p>Note that the file includes a centralized logger is employed to distinguish levels of severity (using the log4r package) as well as relative directory references (using the here package). Comments in all files were created using the bannerCommenter package.</p>
+<p>Note that the file includes a centralized logger to distinguish levels of severity (using the log4r package) as well as relative directory references (using the here package). Comments in all files were created using the bannerCommenter package.</p>
 </div>
 <div id="integration" class="section level3">
 <h3>Integration</h3>
@@ -482,7 +489,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 </div>
 <div id="enrichment" class="section level3">
 <h3>Enrichment</h3>
-<p>The enrichment step creates features better suited for the modeling process by applying feature engineering methods (such as scaling and centering the numeric features), outlier removal (using Cook’s Distance), imputation (using predictive mean matching PMM), and feature selection (by removing highly correlated features). Additionally, training labels are assigned through stratified random sampling. The enriched results are stored in feather format in the data_working/ directory.</p>
+<p>The enrichment step creates features better suited for the modeling process by applying feature engineering methods (such as scaling and centering the numeric features), outlier removal (using Cook’s Distance), imputation (using predictive mean matching PMM), and feature selection (by removing highly-correlated features). Additionally, training labels are assigned through stratified random sampling. The enriched results are stored in feather format in the data_working/ directory.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">list.files</span>(<span class="st">&quot;data_working/&quot;</span>)</span>
 <span id="cb9-2"><a href="#cb9-2"></a>[<span class="dv">1</span>] <span class="st">&quot;hospital_readmissions_enriched_2021-02-25.feather&quot;</span>       <span class="st">&quot;hospital_readmissions_integrated_2021-02-25.feather&quot;</span> </span></code></pre></div>
 </div>
@@ -497,7 +504,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 </div>
 <div id="evaluation" class="section level3">
 <h3>Evaluation</h3>
-<p>In the evaluation step, the testing partitions of the enriched dataset are applied to the trained model from the /models directory. The testing data with the appended predictions, along with performance statistics from the testing dataset, are stored in the data_output/ directory as a .csv file.</p>
+<p>In the evaluation step, the testing partitions of the enriched dataset are applied to the trained model from the models/ directory. The testing data with the appended predictions, along with performance statistics from the testing dataset, are stored in the data_output/ directory as a .csv file.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">list.files</span>(<span class="st">&quot;data_ouput/&quot;</span>)</span>
 <span id="cb11-2"><a href="#cb11-2"></a>[<span class="dv">1</span>] <span class="st">&quot;hospital_readmissions_feature_dtl_2021-02-25.csv&quot;</span>   <span class="st">&quot;hospital_readmissions_holdout_perf_stats_2021-02-25.csv&quot;</span></span>
 <span id="cb11-3"><a href="#cb11-3"></a>[<span class="dv">3</span>] <span class="st">&quot;hospital_readmissions_perf_2021-02-25.csv&quot;</span>    <span class="st">&quot;hospital_readmissions_testing_w_predictions_2021-02-25.csv&quot;</span></span></code></pre></div>
@@ -511,30 +518,26 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 </div>
 <div id="deployment" class="section level3">
 <h3>Deployment</h3>
-<p>The api.R file generates a sample RESTful api that uses the trained model from the models/ directory.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co">#Deploy</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a><span class="kw">list.files</span>(<span class="st">&quot;hospital_readmissions_demo/R/&quot;</span>)</span></code></pre></div>
-<pre><code>## character(0)</code></pre>
-<p>The demo api can be called with the below sample request body:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>{</span>
-<span id="cb15-2"><a href="#cb15-2"></a>  <span class="st">&quot;dt&quot;</span><span class="op">:</span><span class="st"> </span>{<span class="st">&quot;state&quot;</span><span class="op">:</span><span class="st"> &quot;AL&quot;</span>,</span>
-<span id="cb15-3"><a href="#cb15-3"></a>    <span class="st">&quot;hospital_type&quot;</span><span class="op">:</span><span class="st"> &quot;acute_care_hospitals&quot;</span>,</span>
-<span id="cb15-4"><a href="#cb15-4"></a>    <span class="st">&quot;hospital_ownership&quot;</span><span class="op">:</span><span class="st"> &quot;government_hospital_district_or_authority&quot;</span>,</span>
-<span id="cb15-5"><a href="#cb15-5"></a>    <span class="st">&quot;emergency_services&quot;</span><span class="op">:</span><span class="st"> &quot;Yes&quot;</span>,</span>
-<span id="cb15-6"><a href="#cb15-6"></a>    <span class="st">&quot;ehr_interop&quot;</span><span class="op">:</span><span class="st"> &quot;Y&quot;</span>,</span>
-<span id="cb15-7"><a href="#cb15-7"></a>    <span class="st">&quot;denominator&quot;</span><span class="op">:</span><span class="st"> </span><span class="fl">1.4791</span>,</span>
-<span id="cb15-8"><a href="#cb15-8"></a>    <span class="st">&quot;PSI_10&quot;</span><span class="op">:</span><span class="st"> </span><span class="fl">-1.3895</span>,</span>
-<span id="cb15-9"><a href="#cb15-9"></a>    <span class="st">&quot;PSI_11&quot;</span><span class="op">:</span><span class="st"> </span><span class="fl">0.597</span>,</span>
-<span id="cb15-10"><a href="#cb15-10"></a>    <span class="st">&quot;PSI_12&quot;</span><span class="op">:</span><span class="st"> </span><span class="fl">-0.9487</span>,</span>
-<span id="cb15-11"><a href="#cb15-11"></a>    <span class="st">&quot;PSI_13&quot;</span><span class="op">:</span><span class="st"> </span><span class="fl">-0.102</span>,</span>
-<span id="cb15-12"><a href="#cb15-12"></a>    <span class="st">&quot;PSI_14&quot;</span><span class="op">:</span><span class="st"> </span><span class="fl">-1.1131</span>,</span>
-<span id="cb15-13"><a href="#cb15-13"></a>    <span class="st">&quot;PSI_15&quot;</span><span class="op">:</span><span class="st"> </span><span class="fl">-0.9439</span>,</span>
-<span id="cb15-14"><a href="#cb15-14"></a>    <span class="st">&quot;PSI_3&quot;</span><span class="op">:</span><span class="st"> </span><span class="fl">0.029</span>,</span>
-<span id="cb15-15"><a href="#cb15-15"></a>    <span class="st">&quot;PSI_6&quot;</span><span class="op">:</span><span class="st"> </span><span class="fl">-0.5752</span>,</span>
-<span id="cb15-16"><a href="#cb15-16"></a>    <span class="st">&quot;PSI_8&quot;</span><span class="op">:</span><span class="st"> </span><span class="fl">-1.4081</span>,</span>
-<span id="cb15-17"><a href="#cb15-17"></a>    <span class="st">&quot;PSI_9&quot;</span><span class="op">:</span><span class="st"> </span><span class="fl">-0.3028</span>,</span>
-<span id="cb15-18"><a href="#cb15-18"></a>    <span class="st">&quot;denominator_ln&quot;</span><span class="op">:</span><span class="st"> </span><span class="fl">1.3489</span>}</span>
-<span id="cb15-19"><a href="#cb15-19"></a>}</span></code></pre></div>
+<p>The api.R file generates a sample RESTful api that uses the trained model from the models/ directory. The demo api can be called with the below sample request body:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>{</span>
+<span id="cb13-2"><a href="#cb13-2"></a>  <span class="st">&quot;dt&quot;</span><span class="op">:</span><span class="st"> </span>{<span class="st">&quot;state&quot;</span><span class="op">:</span><span class="st"> &quot;AL&quot;</span>,</span>
+<span id="cb13-3"><a href="#cb13-3"></a>    <span class="st">&quot;hospital_type&quot;</span><span class="op">:</span><span class="st"> &quot;acute_care_hospitals&quot;</span>,</span>
+<span id="cb13-4"><a href="#cb13-4"></a>    <span class="st">&quot;hospital_ownership&quot;</span><span class="op">:</span><span class="st"> &quot;government_hospital_district_or_authority&quot;</span>,</span>
+<span id="cb13-5"><a href="#cb13-5"></a>    <span class="st">&quot;emergency_services&quot;</span><span class="op">:</span><span class="st"> &quot;Yes&quot;</span>,</span>
+<span id="cb13-6"><a href="#cb13-6"></a>    <span class="st">&quot;ehr_interop&quot;</span><span class="op">:</span><span class="st"> &quot;Y&quot;</span>,</span>
+<span id="cb13-7"><a href="#cb13-7"></a>    <span class="st">&quot;denominator&quot;</span><span class="op">:</span><span class="st"> </span><span class="fl">1.4791</span>,</span>
+<span id="cb13-8"><a href="#cb13-8"></a>    <span class="st">&quot;PSI_10&quot;</span><span class="op">:</span><span class="st"> </span><span class="fl">-1.3895</span>,</span>
+<span id="cb13-9"><a href="#cb13-9"></a>    <span class="st">&quot;PSI_11&quot;</span><span class="op">:</span><span class="st"> </span><span class="fl">0.597</span>,</span>
+<span id="cb13-10"><a href="#cb13-10"></a>    <span class="st">&quot;PSI_12&quot;</span><span class="op">:</span><span class="st"> </span><span class="fl">-0.9487</span>,</span>
+<span id="cb13-11"><a href="#cb13-11"></a>    <span class="st">&quot;PSI_13&quot;</span><span class="op">:</span><span class="st"> </span><span class="fl">-0.102</span>,</span>
+<span id="cb13-12"><a href="#cb13-12"></a>    <span class="st">&quot;PSI_14&quot;</span><span class="op">:</span><span class="st"> </span><span class="fl">-1.1131</span>,</span>
+<span id="cb13-13"><a href="#cb13-13"></a>    <span class="st">&quot;PSI_15&quot;</span><span class="op">:</span><span class="st"> </span><span class="fl">-0.9439</span>,</span>
+<span id="cb13-14"><a href="#cb13-14"></a>    <span class="st">&quot;PSI_3&quot;</span><span class="op">:</span><span class="st"> </span><span class="fl">0.029</span>,</span>
+<span id="cb13-15"><a href="#cb13-15"></a>    <span class="st">&quot;PSI_6&quot;</span><span class="op">:</span><span class="st"> </span><span class="fl">-0.5752</span>,</span>
+<span id="cb13-16"><a href="#cb13-16"></a>    <span class="st">&quot;PSI_8&quot;</span><span class="op">:</span><span class="st"> </span><span class="fl">-1.4081</span>,</span>
+<span id="cb13-17"><a href="#cb13-17"></a>    <span class="st">&quot;PSI_9&quot;</span><span class="op">:</span><span class="st"> </span><span class="fl">-0.3028</span>,</span>
+<span id="cb13-18"><a href="#cb13-18"></a>    <span class="st">&quot;denominator_ln&quot;</span><span class="op">:</span><span class="st"> </span><span class="fl">1.3489</span>}</span>
+<span id="cb13-19"><a href="#cb13-19"></a>}</span></code></pre></div>
 <p>Note that the demo project was designed simply to illustrate the the functionality of the archetyper project. It was not designed to be a production or publish worthy model.</p>
 </div>
 </div>

@@ -9,9 +9,9 @@ if(dir.exists("majestic_12")){
 ## ---- eval=FALSE, include=TRUE, message=FALSE, warning=FALSE------------------
 #  generate("majestic_12")
 #  
-#  list.files(project_path)
+#  list.files("majestic_12")
 #  [1] "data_input"        "data_output"       "data_working"      "docs"              "majestic_12.Rproj"
-#  [6] "models"            "R"                 "readme.md"
+#  [6] "models"            "R"                 "readme.md"      ".gitignore"
 
 ## ---- eval=FALSE, include=TRUE, message=FALSE, warning=FALSE------------------
 #  list.files("majestic_12/R/")
@@ -32,7 +32,7 @@ if(dir.exists("majestic_12")){
 #   [1] "config.yml"        "data_input"        "data_output"
 #   [4] "data_working"      "docs"              "drivers"
 #   [7] "majestic_12.Rproj" "models"            "R"
-#  [10] "readme.md"
+#  [10] "readme.md"         ".gitignore"
 #  
 
 ## ---- eval=TRUE, include=FALSE, message=FALSE, warning=FALSE------------------
@@ -41,14 +41,14 @@ if(dir.exists("majestic_12")){
 }
 
 ## ---- eval=FALSE, include=TRUE------------------------------------------------
-#  generate(project_name = project_name, path = project_directory, exclude = c("api", "utilities", "readme", "lint", "gitignore"))
+#  generate(project_name = project_name, path = project_directory, exclude = c("api.R", "utilities.R", "readme.md", "lint.R", ".gitignore"))
 #  
 #  list.files(project_path)
 #  [1] "data_input"        "data_output"       "data_working"      "docs"              "majestic_12.Rproj"
-#  [6] "models"            "R"                 "readme.md"
+#  [6] "models"            "R"
 #  list.files(project_path_r)
 #   [1] "0_test.R"      "1_integrate.R" "2_enrich.R"    "3_model.R"     "4_evaluate.R"  "5_present.Rmd"
-#   [7] "api.R"         "common.R"      "explore.R"     "lint.R"        "mediator.R"    "utilities.R"
+#   [7] "common.R"      "explore.R"     "mediator.R"
 
 ## ---- eval=TRUE, include=FALSE, message=FALSE, warning=FALSE------------------
 if(dir.exists("majestic_12")){
@@ -62,14 +62,14 @@ if(dir.exists("hospital_readmissions_demo")){
 #  archetyper::generate_demo()
 #  list.files("hospital_readmissions_demo/")
 #  [1] "data_input"        "data_output"       "data_working"      "docs"              "hospital_readmissions_demo.Rproj"
-#  [6] "models"            "R"                 "readme.md"
+#  [6] "models"            "R"                 "readme.md"        ".gitignore"
 
 ## ---- eval=FALSE, include=TRUE, message=FALSE, warning=FALSE------------------
 #  cat(readChar("hospital_readmissions_demo/R/mediator.R"), 1e5))
 #  
-#  ##----------------------------------------------------------------------
-#  ##  The mediator file will execute the linear data mining work-flow.   -
-#  ##----------------------------------------------------------------------
+#  ##--------------------------------------------------------------------------
+#  ##  The mediator file will execute the linear data processing work-flow.   -
+#  ##--------------------------------------------------------------------------
 #  
 #  source("R/common.R")
 #  tryCatch({
@@ -117,10 +117,6 @@ if(dir.exists("hospital_readmissions_demo")){
 #  #Present
 #  > list.files("hospital_readmissions_demo/docs/")
 #  [1] "5_present.pdf"
-
-## ----eval=T, message=FALSE, warning=FALSE, include=T--------------------------
-#Deploy
-list.files("hospital_readmissions_demo/R/")
 
 ## ----eval=F, message=FALSE, warning=FALSE, include=T--------------------------
 #  {
