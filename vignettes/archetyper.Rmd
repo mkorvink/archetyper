@@ -118,7 +118,7 @@ A database connection type of “odbc” or “jdbc” can be passed in as a fun
 * `dml_ddl.sql` stores SQL statements and other database scripts used to prepare and extract data from the source systems.
 * `config.yml` stores secret information, such as user database credentials.
 
-If using JDBC, a directory for driver JARs named `/drivers` will also be created:
+If using JDBC, a directory for driver JARs named `drivers/` will also be created:
 
 *	`drivers/` is directory for storing database driver jars. Note that the user must provide the jars and classpath names to the jars specific to the database type being accessed.
 
