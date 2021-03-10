@@ -1,6 +1,11 @@
 default:
-  test_database:
-    driverclass: 'com.teradata.jdbc.TeraDriver'
-    connectionstring: 'jdbc:teradata://servername/dbname'
-    username: ''
-    password: ''
+  dev_database:
+    username: 'my_dev_username'
+    password: 'my_dev_password'
+    driver_class: 'driver_class'
+    connection_string: 'jdbc:postgresql://server-name:server-port/database-name'
+  prod_database:
+    username: 'my_prod_username'
+    password: 'my_prod_password'
+    driver_class: 'driver_class'
+    connection_string: 'jdbc:postgresql://server-name:server-port/database-name'

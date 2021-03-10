@@ -1,0 +1,4 @@
+library(odbc)
+con <- dbConnect(odbc::odbc(), "dev_database")
+sql <- "select my_value from my_table"
+result_df <- dbGetQuery(con, sql)

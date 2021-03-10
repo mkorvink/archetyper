@@ -42,45 +42,40 @@ generate <- function(project_name,
     stop(stringr::str_c("Project name: ", project_name , " already exists in directory ", project_directory))
   }
 
-  directory_vect <- c("data_input/", "data_working/", "data_output/", "models/", "docs/", "drivers/", "R/")
+  directory_vect <- c("data_input/", "data_working/", "data_output/", "models/", "docs/", "R/")
   dir.create(project_directory)
 
   if (db_connection_type == "jdbc"){
+    integrate_template <- stringr::str_replace_all(integrate_template, "archetyper_db_token", jdbc_snippet)
+    dir.create(stringr::str_c(project_directory, "/drivers/"))
     is_jdbc <- TRUE
-  }
-
-  if (db_connection_type == "odbc"){
+  } else if (db_connection_type == "odbc"){
+    integrate_template <- stringr::str_replace_all(integrate_template, "archetyper_db_token", odbc_snippet)
     is_odbc <- TRUE
+  } else {
+    integrate_template <- stringr::str_replace_all(integrate_template, "archetyper_db_token", "")
   }
 
   for (directory in directory_vect){
-    if (directory == "drivers/" ){
-      if (is_jdbc){
-        dir.create(stringr::str_c(project_directory, "/", directory))
-      }
-    } else {
-      dir.create(stringr::str_c(project_directory, "/", directory))
-    }
+    dir.create(stringr::str_c(project_directory, "/", directory))
   }
 
   common_template <-  stringr::str_replace_all(common_template, "archetyper_proj_name", {{ project_name }})
 
   template_vect <- c(test_template, integrate_template, enrich_template, model_template, evaluate_template, present_template, common_template,
-    mediator_template, utilities_template, explore_template, api_template, lint_template, gitignore_template, readme_template, config_template, proj_template)
+    mediator_template, utilities_template, explore_template, api_template, lint_template, gitignore_template, readme_template, config_template, proj_template, sql_template)
 
   names(template_vect) <- c("0_test.R", "1_integrate.R", "2_enrich.R", "3_model.R", "4_evaluate.R", "5_present.Rmd", "common.R", "mediator.R", "utilities.R",
-                            "explore.R", "api.R", "lint.R", ".gitignore", "readme.md", "config.yml", stringr::str_c(project_name, ".Rproj"))
+                            "explore.R", "api.R", "lint.R", ".gitignore", "readme.md", "config.yml", stringr::str_c(project_name, ".Rproj"), "dml_ddl.sql")
 
   for (template_index in seq_along(template_vect)){
     template_name <- names(template_vect)[[template_index]]
 
-    if (template_name == "config.yml" ){
-      #TODO: exclude if in exclude vector argument
-      if (is_jdbc | is_odbc){
+    if (template_name %in% c("config.yml", "dml_ddl.sql") ){
+      if (is_jdbc){
         write_to_directory(template_vect[[template_index]], template_name, exclude, project_directory)
       }
     } else {
-
       if (stringr::str_ends(template_name, "(\\.R|\\.Rmd)")){
         write_to_directory(template_vect[[template_index]], template_name, exclude, project_r_directory)
       } else {

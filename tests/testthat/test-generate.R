@@ -56,7 +56,7 @@ test_that("test_project_creation_jdbc", {
   directory <- tempdir()
   generate(test_project_name, db_connection_type = "jdbc", path = directory)
   file_vect <- list.files(stringr::str_c(tempdir(), "/",test_project_name, "/"))
-  expect_equal(length(file_vect), 10)
+  expect_equal(length(file_vect), 11)
   r_file_vect <- list.files(stringr::str_c(tempdir(), "/",test_project_name,"/R/"))
   expect_equal(length(r_file_vect), 12)
   ifelse(dir.exists(stringr::str_c(tempdir(), "/", test_project_name)),unlink(stringr::str_c(tempdir(), "/", test_project_name), recursive=TRUE), NA)
@@ -68,7 +68,7 @@ test_that("test_project_creation_odbc", {
 
   generate(test_project_name, db_connection_type = "odbc", path = directory)
   file_vect <- list.files(stringr::str_c(tempdir(), "/",test_project_name, "/"))
-  expect_equal(length(file_vect), 9)
+  expect_equal(length(file_vect), 8)
   r_file_vect <- list.files(stringr::str_c(tempdir(), "/",test_project_name,"/R/"))
   expect_equal(length(r_file_vect), 12)
   ifelse(dir.exists(stringr::str_c(tempdir(), "/", test_project_name)),unlink(stringr::str_c(tempdir(), "/", test_project_name), recursive=TRUE), NA)

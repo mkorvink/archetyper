@@ -1,0 +1,6 @@
+library(RJDBC)
+db_credentials <- config::get("dev_database")
+drv <- RJDBC::JDBC(driverClass = db_credentials$driver_class, classPath =  Sys.glob("drivers/*"))
+con <- dbConnect(drv,db_credentials$connection_string, db_credentials$username, db_credentials$password)
+sql <- "select my_value from my_table"
+result_df <- dbGetQuery(con, sql)

@@ -5,6 +5,8 @@
 
 source("R/common.R")
 
+archetyper_db_token
+
 info(logger, "Loading, integrating, and transforming source data...")
 
 ##----------------------------------------------------------------------------------------------------

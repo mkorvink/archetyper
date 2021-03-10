@@ -22,6 +22,10 @@ gitignore_demo <- read_file("gitignore_demo.txt")
 config_demo <- read_file("config_demo.yml")
 readme_demo <- read_file("readme_demo.md")
 
+odbc_snippet <- read_file("odbc_snippet.txt")
+jdbc_snippet <- read_file("jdbc_snippet.txt")
+
+
 
 #Template files
 common_template <- read_file("common_template.R")
@@ -37,12 +41,18 @@ explore_template <- read_file("explore_template.R")
 lint_template <- read_file("lint_template.R")
 proj_template <- read_file("proj_template.txt")
 
+sql_template <- read_file("dml_ddl_template.txt")
+
+
 api_template <- read_file("api_template.R")
 gitignore_template <- read_file("gitignore_template.txt")
 config_template <- read_file("config_template.yml")
 readme_template <- read_file("readme_template.md")
 
 usethis::use_data(
+  sql_template,
+  odbc_snippet,
+  jdbc_snippet,
   common_demo,
   test_demo,
   integrate_demo,
