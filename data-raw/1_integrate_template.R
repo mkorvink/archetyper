@@ -10,14 +10,14 @@ archetyper_db_token
 info(logger, "Loading, integrating, and transforming source data...")
 
 ##----------------------------------------------------------------------------------------------------
-##  Gather and integrate data from the /data_input directory or external data store (e.g. database)  -
+##  Gather and integrate data from the data_input/ directory or external data store (e.g. database)  -
 ##----------------------------------------------------------------------------------------------------
 
-info(logger, "Writing integrated data to /cache directory...")
+info(logger, "Writing integrated data to data_working/ directory...")
 
-##-------------------------------------------------------------------------------------------
-##  Write integrated data to the /data_working directory. File name should be version controlled.  -
-##-------------------------------------------------------------------------------------------
+##--------------------------------------------------------------------------------------------------
+##  Write integrated data to the data_working/ directory. File name should be version controlled.  -
+##--------------------------------------------------------------------------------------------------
 
 #integrated_data_file_name <- get_versioned_file_name("data_working", "integrated", ".feather")
 #integrated_df %>% write_feather(integrated_data_file_name)

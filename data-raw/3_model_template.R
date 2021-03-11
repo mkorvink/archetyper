@@ -4,9 +4,10 @@
 
 source("R/common.R")
 
-##--------------------------------------------------------------------------------------------------------------------------------------------------------
-##  Read in the training data partition(s), build model, write performance/model statistics to /data_working directory and trained model to /model directory.   -
-##--------------------------------------------------------------------------------------------------------------------------------------------------------
+##---------------------------------------------------------------------------------------------------------------------------------------------------------------
+##  Read in the training data partition(s), build model, write performance/model statistics to data_working/ directory and trained model to /model directory.   -
+##---------------------------------------------------------------------------------------------------------------------------------------------------------------
+info(logger, "Training model.")
 
 #training_df <- read_feather(get_versioned_file_name("data_working", "enriched", ".feather")) %>%
 #  filter(training_ind) %>%

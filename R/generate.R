@@ -14,7 +14,7 @@ write_to_directory <-  function(template, file_name, exclude, project_directory)
     }
   }
 
-#' generates a set of files and directories to support both the data mining work-flow and surrounding technical components.
+#' generates a set of files and directories to support both the data mining/science workflow.
 #'
 #' @param project_name The name of the project to be generated.
 #' @param db_connection_type A optional string indicating if a "JDBC" or "ODBC" connection will be used in the project. Options include: "jdbc" or "odbc"
