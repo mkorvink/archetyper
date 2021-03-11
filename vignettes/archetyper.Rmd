@@ -5,7 +5,7 @@ output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Introduction to archetyper}
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncodibng{UTF-8}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup}
@@ -50,7 +50,7 @@ Additionally, a well-formed data mining project will include:
 
 ## Generating a new project with generate():  
 
-generate will produce a set of files and directories to support both the data mining workflow and surrounding technical components. 
+generate will create a new project with the files and directories to support the data mining and data science workflow.
 ```{r, eval=TRUE, include=FALSE, message=FALSE, warning=FALSE}
 if(dir.exists("majestic_12")){
   unlink("majestic_12", recursive=TRUE) 
