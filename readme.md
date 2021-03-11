@@ -30,9 +30,7 @@ A new project can be instantiated using the generate() function.
 
 ``` r
 #> library(archetyper)
-
 #> archetyper::generate("majestic_12")
-
 #> list.files("majestic_12/")
 [1] "data_input"        "data_output"       "data_working"      "docs"             
 [5] "majestic_12.Rproj" "models"            "R"                 "readme.md"
