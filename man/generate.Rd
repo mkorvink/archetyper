@@ -2,7 +2,7 @@
 % Please edit documentation in R/generate.R
 \name{generate}
 \alias{generate}
-\title{generates a set of files and directories to support both the data mining/science workflow.}
+\title{generates a set of files and directories to support both the data mining and data science workflow.}
 \usage{
 generate(
   project_name,
@@ -21,7 +21,7 @@ generate(
 \item{path}{The path where the project should be created. Default is the current working directory.}
 }
 \description{
-generates a set of files and directories to support both the data mining/science workflow.
+generates a set of files and directories to support both the data mining and data science workflow.
 }
 \examples{
 \dontrun{

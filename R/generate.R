@@ -14,7 +14,7 @@ write_to_directory <-  function(template, file_name, exclude, project_directory)
     }
   }
 
-#' generates a set of files and directories to support both the data mining/science workflow.
+#' generates a set of files and directories to support both the data mining and data science workflow.
 #'
 #' @param project_name The name of the project to be generated.
 #' @param db_connection_type A optional string indicating if a "JDBC" or "ODBC" connection will be used in the project. Options include: "jdbc" or "odbc"
@@ -31,6 +31,7 @@ generate <- function(project_name,
                      path = ".") {
 
   is_jdbc <- F
+  is_odbc <- F
   if (!is_valid_project_name(project_name)) {
     stop(stringr::str_c("Project name: ", project_name, " is invalid"))
   }
@@ -50,6 +51,7 @@ generate <- function(project_name,
     is_jdbc <- TRUE
   } else if (db_connection_type == "odbc") {
     integrate_template <- stringr::str_replace_all(integrate_template, "archetyper_db_token", odbc_snippet)
+    is_odbc <- TRUE
   } else {
     integrate_template <- stringr::str_replace_all(integrate_template, "archetyper_db_token", "")
   }
@@ -68,9 +70,12 @@ generate <- function(project_name,
 
   for (template_index in seq_along(template_vect)) {
     template_name <- names(template_vect)[[template_index]]
-
-    if (template_name %in% c("config.yml", "dml_ddl.sql")) {
+    if (template_name == "config.yml") {
       if (is_jdbc) {
+        write_to_directory(template_vect[[template_index]], template_name, exclude, project_directory)
+      }
+    } else if (template_name == "dml_ddl.sql") {
+      if (is_jdbc | is_odbc) {
         write_to_directory(template_vect[[template_index]], template_name, exclude, project_directory)
       }
     } else {

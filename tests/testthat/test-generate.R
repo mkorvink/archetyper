@@ -68,13 +68,11 @@ test_that("test_project_creation_odbc", {
 
   generate(test_project_name, db_connection_type = "odbc", path = directory)
   file_vect <- list.files(stringr::str_c(tempdir(), "/",test_project_name, "/"))
-  expect_equal(length(file_vect), 8)
+  expect_equal(length(file_vect), 9)
   r_file_vect <- list.files(stringr::str_c(tempdir(), "/",test_project_name,"/R/"))
   expect_equal(length(r_file_vect), 12)
   ifelse(dir.exists(stringr::str_c(tempdir(), "/", test_project_name)),unlink(stringr::str_c(tempdir(), "/", test_project_name), recursive=TRUE), NA)
 })
-
-
 
 test_that("test_project_creation_no_api", {
   test_project_name <- "archetyper_test_project_no_api"
@@ -87,7 +85,6 @@ test_that("test_project_creation_no_api", {
   expect_equal(length(r_file_vect), 11)
   ifelse(dir.exists(stringr::str_c(tempdir(), "/", test_project_name)),unlink(stringr::str_c(tempdir(), "/", test_project_name), recursive=TRUE), NA)
 })
-
 
 test_that("test_project_creation_expect_error", {
   test_project_name <- "hospital_readmissions_demo"
