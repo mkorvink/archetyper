@@ -10,6 +10,10 @@
 
 archetyper initializes data mining and data science projects by generating common workflow components as well as peripheral files needed to support technical best practices.
 
+<br/>
+
+![](man/figures/flow.png)
+
 ### Development version
 
 To get a bug fix or use a feature from the development version, you
