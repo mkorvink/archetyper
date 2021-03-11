@@ -216,8 +216,7 @@ Once the demo project has been created, the project should be opened in RStudio.
 
 ### Running the demo workflow
 
-The the full data-mining/data-science life-cycle can be triggered by executing the `mediator.R` file. 
-The contents of the `mediator.R` file is below:
+The the full data-mining/data-science life-cycle can be triggered by executing the `mediator.R` file. The contents of the `mediator.R` file is below:
 
 ```{r, eval=FALSE, include=TRUE, message=FALSE, warning=FALSE}
 cat(readChar("hospital_readmissions_demo/R/mediator.R"), 1e5))
@@ -270,7 +269,7 @@ The enrichment step creates features better suited for the modeling process by a
 
 ### Modeling
 
-In the modeling step, a stepwise linear regression is applied to the training partition of the enriched dataset. The model coefficients, performance statistics, and the model itself is stored in the data_output/ and /models directories (respectively).
+In the modeling step, a stepwise linear regression is applied to the training partition of the enriched dataset. The model coefficients, performance statistics, and the model itself is stored in the data_output/ and models/ directories (respectively).
 
 ```{r, eval=FALSE, message=FALSE, warning=FALSE, include=T}
 > list.files("data_ouput/")
