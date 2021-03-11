@@ -79,6 +79,8 @@
 <h2 class="hasAnchor">
 <a href="#overview" class="anchor"></a>Overview</h2>
 <p>archetyper initializes data mining and data science projects by generating common workflow components as well as peripheral files needed to support technical best practices.</p>
+<p><br></p>
+<p><img src="reference/figures/flow.png"></p>
 <div id="development-version" class="section level3">
 <h3 class="hasAnchor">
 <a href="#development-version" class="anchor"></a>Development version</h3>
@@ -93,18 +95,16 @@
 <a href="#usage" class="anchor"></a>Usage</h2>
 <p>A new project can be instantiated using the generate() function.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">#&gt; library(archetyper)</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="co">#&gt; archetyper::generate("majestic_12")</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="co">#&gt; list.files("majestic_12/")</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a>[<span class="dv">1</span>] <span class="st">"data_input"</span>        <span class="st">"data_output"</span>       <span class="st">"data_working"</span>      <span class="st">"docs"</span>             </span>
-<span id="cb2-7"><a href="#cb2-7"></a>[<span class="dv">5</span>] <span class="st">"majestic_12.Rproj"</span> <span class="st">"models"</span>            <span class="st">"R"</span>                 <span class="st">"readme.md"</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a>[<span class="dv">9</span>] <span class="st">".gitignore"</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a></span>
-<span id="cb2-10"><a href="#cb2-10"></a><span class="co">#&gt; list.files("majestic_12/R")</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a> [<span class="dv">1</span>] <span class="st">"0_test.R"</span>      <span class="st">"1_integrate.R"</span> <span class="st">"2_enrich.R"</span>    <span class="st">"3_model.R"</span>     <span class="st">"4_evaluate.R"</span> </span>
-<span id="cb2-12"><a href="#cb2-12"></a> [<span class="dv">6</span>] <span class="st">"5_present.Rmd"</span> <span class="st">"api.R"</span>         <span class="st">"common.R"</span>      <span class="st">"explore.R"</span>     <span class="st">"lint.R"</span>       </span>
-<span id="cb2-13"><a href="#cb2-13"></a>[<span class="dv">11</span>] <span class="st">"mediator.R"</span>    <span class="st">"utilities.R"</span></span></code></pre></div>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co">#&gt; archetyper::generate("majestic_12")</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co">#&gt; list.files("majestic_12/")</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>[<span class="dv">1</span>] <span class="st">"data_input"</span>        <span class="st">"data_output"</span>       <span class="st">"data_working"</span>      <span class="st">"docs"</span>             </span>
+<span id="cb2-5"><a href="#cb2-5"></a>[<span class="dv">5</span>] <span class="st">"majestic_12.Rproj"</span> <span class="st">"models"</span>            <span class="st">"R"</span>                 <span class="st">"readme.md"</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>[<span class="dv">9</span>] <span class="st">".gitignore"</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="co">#&gt; list.files("majestic_12/R")</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a> [<span class="dv">1</span>] <span class="st">"0_test.R"</span>      <span class="st">"1_integrate.R"</span> <span class="st">"2_enrich.R"</span>    <span class="st">"3_model.R"</span>     <span class="st">"4_evaluate.R"</span> </span>
+<span id="cb2-10"><a href="#cb2-10"></a> [<span class="dv">6</span>] <span class="st">"5_present.Rmd"</span> <span class="st">"api.R"</span>         <span class="st">"common.R"</span>      <span class="st">"explore.R"</span>     <span class="st">"lint.R"</span>       </span>
+<span id="cb2-11"><a href="#cb2-11"></a>[<span class="dv">11</span>] <span class="st">"mediator.R"</span>    <span class="st">"utilities.R"</span></span></code></pre></div>
 <p>A runnable demo project will be created with the generate_demo().</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#&gt; archetyper::generate_demo()</span></code></pre></div>

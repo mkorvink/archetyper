@@ -24,7 +24,7 @@ The lifecyle of a data mining project generally includes the following component
 
 * Modeling
 
-* Measurement
+* Evaluation
 
 * Presentation
 
