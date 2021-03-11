@@ -7,7 +7,7 @@ Authors@R: c(
     person(given = "Matthew", family = "Nethery", role = "ctb"),
     person(given = "Franck", family = "Diaz-Garelli", role = "ctb"))
 Maintainer: Michael Korvink <mkorvink@protonmail.com>
-Description: The archetyper package generates a projet template to support the data science workflow as well as peripheral components to support software best practices.
+Description: The archetyper package generates a project template to support the data science workflow as well as peripheral components to support software best practices.
 License: GPL (>= 3)
 URL: https://github.com/
 BugReports: https://github.com/mkorvink/archetyper/issues
