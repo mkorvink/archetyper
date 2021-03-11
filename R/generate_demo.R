@@ -17,15 +17,15 @@ generate_demo <- function(path = ".") {
   project_directory <- stringr::str_c(path, "/", project_name)
   project_r_directory <- stringr::str_c(project_directory, "/R")
 
-  if (dir.exists(project_directory)){
-    stop(stringr::str_c("Project name: ", project_name , " already exists in directory ", project_directory))
+  if (dir.exists(project_directory)) {
+    stop(stringr::str_c("Project name: ", project_name, " already exists in directory ", project_directory))
   }
 
   directory_vect <- c("data_input/", "data_working/", "data_output/", "models/", "docs/", "R/")
 
   dir.create(project_directory)
 
-  for (directory in directory_vect){
+  for (directory in directory_vect) {
       dir.create(stringr::str_c(project_directory, "/", directory))
   }
 
@@ -35,10 +35,10 @@ generate_demo <- function(path = ".") {
   names(demo_vect) <- c("0_test.R", "1_integrate.R", "2_enrich.R", "3_model.R", "4_evaluate.R", "5_present.Rmd", "common.R", "mediator.R", "utilities.R",
                         "explore.R", "api.R", "lint.R", ".gitignore", "readme.md",  stringr::str_c(project_name, ".Rproj"))
 
-  for (demo_index in seq_along(demo_vect)){
+  for (demo_index in seq_along(demo_vect)) {
     demo_name <- names(demo_vect)[[demo_index]]
 
-    if (stringr::str_ends(demo_name, "(\\.R|\\.Rmd)")){
+    if (stringr::str_ends(demo_name, "(\\.R|\\.Rmd)")) {
       write_to_dir(demo_vect[[demo_index]], demo_name, project_r_directory)
     } else {
       write_to_dir(demo_vect[[demo_index]], demo_name, project_directory)

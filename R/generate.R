@@ -31,32 +31,30 @@ generate <- function(project_name,
                      path = ".") {
 
   is_jdbc <- F
-  is_odbc <- F
-  if (!is_valid_project_name(project_name)){
-    stop(stringr::str_c("Project name: ", project_name , " is invalid"))
+  if (!is_valid_project_name(project_name)) {
+    stop(stringr::str_c("Project name: ", project_name, " is invalid"))
   }
 
   project_directory <- stringr::str_c(path, "/", project_name)
   project_r_directory <- stringr::str_c(project_directory, "/R")
-  if (dir.exists(project_directory)){
-    stop(stringr::str_c("Project name: ", project_name , " already exists in directory ", project_directory))
+  if (dir.exists(project_directory)) {
+    stop(stringr::str_c("Project name: ", project_name, " already exists in directory ", project_directory))
   }
 
   directory_vect <- c("data_input/", "data_working/", "data_output/", "models/", "docs/", "R/")
   dir.create(project_directory)
 
-  if (db_connection_type == "jdbc"){
+  if (db_connection_type == "jdbc") {
     integrate_template <- stringr::str_replace_all(integrate_template, "archetyper_db_token", jdbc_snippet)
     dir.create(stringr::str_c(project_directory, "/drivers/"))
     is_jdbc <- TRUE
-  } else if (db_connection_type == "odbc"){
+  } else if (db_connection_type == "odbc") {
     integrate_template <- stringr::str_replace_all(integrate_template, "archetyper_db_token", odbc_snippet)
-    is_odbc <- TRUE
   } else {
     integrate_template <- stringr::str_replace_all(integrate_template, "archetyper_db_token", "")
   }
 
-  for (directory in directory_vect){
+  for (directory in directory_vect) {
     dir.create(stringr::str_c(project_directory, "/", directory))
   }
 
@@ -68,22 +66,19 @@ generate <- function(project_name,
   names(template_vect) <- c("0_test.R", "1_integrate.R", "2_enrich.R", "3_model.R", "4_evaluate.R", "5_present.Rmd", "common.R", "mediator.R", "utilities.R",
                             "explore.R", "api.R", "lint.R", ".gitignore", "readme.md", "config.yml", stringr::str_c(project_name, ".Rproj"), "dml_ddl.sql")
 
-  for (template_index in seq_along(template_vect)){
+  for (template_index in seq_along(template_vect)) {
     template_name <- names(template_vect)[[template_index]]
 
-    if (template_name %in% c("config.yml", "dml_ddl.sql") ){
-      if (is_jdbc){
+    if (template_name %in% c("config.yml", "dml_ddl.sql")) {
+      if (is_jdbc) {
         write_to_directory(template_vect[[template_index]], template_name, exclude, project_directory)
       }
     } else {
-      if (stringr::str_ends(template_name, "(\\.R|\\.Rmd)")){
+      if (stringr::str_ends(template_name, "(\\.R|\\.Rmd)")) {
         write_to_directory(template_vect[[template_index]], template_name, exclude, project_r_directory)
       } else {
         write_to_directory(template_vect[[template_index]], template_name, exclude, project_directory)
       }
     }
   }
-
-
 }
-

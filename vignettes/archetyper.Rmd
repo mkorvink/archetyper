@@ -48,7 +48,6 @@ Additionally, a well-formed data mining project will include:
 
 * Use of relative directories
 
-
 ## Generating a new project with generate():  
 
 generate will produce a set of files and directories to support both the data mining workflow and surrounding technical components. 

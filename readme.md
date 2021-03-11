@@ -10,8 +10,6 @@
 
 archetyper is a package that initializes data science and data mining and data science projects by generating common workflow components and surrounding files to support technical best practices:
 
-  - generate() creates a new project with templated files and directories to support a data mining workflow.
-
 ### Development version
 
 To get a bug fix or use a feature from the development version, you
@@ -51,7 +49,7 @@ You can learn more about archetyper in `vignette("archetyper")`.
 Acknowledgments
 ---------------
 
-This readme was modeled after the dplyr readme.
+This readme was modeled after the dplyr readme. The archetyper hex image was designed by Matthew Nethery. 
 
 ## Code of conduct
 
