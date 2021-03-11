@@ -8,7 +8,7 @@
 
 ## Overview
 
-archetyper is a package that initializes data science and data mining and data science projects by generating common workflow components and surrounding files to support technical best practices:
+archetyper initializes data mining and data science projects by generating common workflow components as well as peripheral files needed to support technical best practices.
 
 ### Development version
 
