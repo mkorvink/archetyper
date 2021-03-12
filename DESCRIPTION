@@ -1,6 +1,6 @@
 Package: archetyper
 Type: Package
-Title: Generates a project template for data science and data mining projects
+Title: An Archetype for Data Mining and Data Science Projects
 Version: 0.1.0
 Authors@R: c(
     person(given = "Michael", family = "Korvink", role = c("aut", "cre", "com"), email = "mkorvink@protonmail.com"),
@@ -9,7 +9,7 @@ Authors@R: c(
 Maintainer: Michael Korvink <mkorvink@protonmail.com>
 Description: The archetyper package generates a project template to support the data science workflow as well as peripheral components to support software best practices.
 License: GPL (>= 3)
-URL: https://github.com/
+URL: https://mkorvink.github.io/archetyper/index.html
 BugReports: https://github.com/mkorvink/archetyper/issues
 Encoding: UTF-8
 LazyData: true

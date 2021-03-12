@@ -4,6 +4,7 @@
   [![R-CMD-check](https://github.com/mkorvink/archetyper/workflows/R-CMD-check/badge.svg)](https://github.com/mkorvink/archetyper/actions)
   [![Codecov test coverage](https://codecov.io/gh/mkorvink/archetyper/branch/main/graph/badge.svg)](https://codecov.io/gh/mkorvink/archetyper?branch=main)
   [![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+  [![License: LGPL v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0)
    <!-- badges: end -->
 
 ## Overview

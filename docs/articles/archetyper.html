@@ -75,7 +75,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Introduction to archetyper</h1>
             
-            <h4 class="date">2021-03-11</h4>
+            <h4 class="date">2021-03-12</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/mkorvink/archetyper/blob/master/vignettes/archetyper.Rmd"><code>vignettes/archetyper.Rmd</code></a></small>
       <div class="hidden name"><code>archetyper.Rmd</code></div>
@@ -85,7 +85,7 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/">archetyper</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mkorvink.github.io/archetyper/index.html">archetyper</a></span><span class="op">)</span></code></pre></div>
 <p>archetyper initializes data mining and data science projects by generating common workflow components as well as peripheral files needed to support technical best practices:</p>
 <p>The lifecyle of a data mining project generally includes the following components:</p>
 <ul>
@@ -126,9 +126,9 @@
 <p>The base work-flow files include integrate.R, enrich.R, model.R, evaluate.R, present.Rmd, and api.R.</p>
 <ul>
 <li>
-<code>1_integrate.R</code> is responsible for acquiring and integrating data across data sources as well as standardizing data types and naming conventions of columnar data. The output of the integration step is a two-by-two tibble, with rows as observations and columns as raw candidate features, saved in version-controlled feather format to the <code>data_working/</code> directory for downstream use.</li>
+<code>1_integrate.R</code> is responsible for acquiring and integrating data across data sources as well as standardizing data types and naming conventions of columnar data. It is recommended that the output of the integration step is prepared as a two-by-two tibble, with rows as observations and columns as raw candidate features. The output should be saved in version-controlled feather format to the <code>data_working/</code> directory for downstream use.</li>
 <li>
-<code>2_enrich.R</code> is responsible for reading integrated data from the <code>data_working/</code> directory and enriching the raw features into more informative features specific to the model being applied. Tasks in this stage might include feature engineering, outlier removal, imputation, feature selection, and the assignment of testing partition labels. As with the integration step, the output of the integration step is a two-by-two tibble object saved as a version-controlled feather file in the <code>data_working/</code> directory for downstream use.</li>
+<code>2_enrich.R</code> is responsible for reading integrated data from the <code>data_working/</code> directory and enriching the raw features into more informative features specific to the model being applied. Tasks in this stage might include feature engineering, outlier removal, imputation, feature selection, and the assignment of testing partition labels. As with the integration step, the output of the integration step should be a two-by-two tibble object saved as a version-controlled feather file in the <code>data_working/</code> directory for downstream use.</li>
 <li>
 <code>3_model.R</code> should read the training partitions from the enriched dataset stored in the <code>data_working/</code> directory and train the desired model(s). Model objects generated within the model.R file should be stored in the <code>models/</code> directory using consistent version control and naming conventions.</li>
 <li>
