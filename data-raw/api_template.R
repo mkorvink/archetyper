@@ -5,7 +5,7 @@
 library(plumber)
 
 #Read the model
-#mod <- readRDS("models/<model_name>.mod")
+#mod <- readRDS("../models/<model_name>.mod")
 
 #* @prediction_model  My Prediction API
 

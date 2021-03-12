@@ -1,6 +1,6 @@
 library(plumber)
 
-mod <- readRDS("models/hospital_readmissions_readmissions_2021-02-19.mod")
+mod <- readRDS("../models/hospital_readmissions_readmissions_2021-02-19.mod")
 
 #* @readmission_risk  Demo API
 #* Get readmission prediction
