@@ -1,0 +1,9 @@
+home:
+  title: An Archetype for Data Mining and Data Science Projects
+  description: The archetyper package generates a project template to support the data science workflow as well as peripheral components to support software best practices.
+
+template:
+  opengraph:
+    image:
+      src: man/figures/archetyper_logo_git.png
+      alt: "A Data Science Project Archetype"
