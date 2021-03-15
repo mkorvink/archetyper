@@ -9,7 +9,7 @@
 
 ## Overview
 
-archetyper initializes data mining and data science projects by generating common workflow components as well as peripheral files needed to support technical best practices.
+'archetyper' initializes data mining and data science projects by generating common workflow components as well as peripheral files needed to support technical best practices.
 
 <br/>
 
@@ -18,7 +18,7 @@ archetyper initializes data mining and data science projects by generating commo
 ### Development version
 
 To get a bug fix or use a feature from the development version, you
-can install the development version of archetyper from GitHub.
+can install the development version of 'archetyper' from GitHub.
 
 ``` r
 #install.packages("devtools")
@@ -47,12 +47,12 @@ A runnable demo project will be created with the generate_demo().
 ``` r
 #> archetyper::generate_demo()
 ```
-You can learn more about archetyper in `vignette("archetyper")`.
+You can learn more about 'archetyper' in `vignette("archetyper")`.
 
 Acknowledgments
 ---------------
 
-This readme was modeled after the dplyr readme. The archetyper hex image was designed by Matthew Nethery. 
+This readme was modeled after the dplyr readme. The 'archetyper' hex image was designed by Matthew Nethery.  Thanks to Gregor Seyer for the helpful comments in reviewing this package.
 
 ## Code of conduct
 

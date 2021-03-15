@@ -8,7 +8,7 @@ generate(
   project_name,
   db_connection_type = "",
   exclude = as.character(),
-  path = "."
+  path = tempdir()
 )
 }
 \arguments{
@@ -18,7 +18,10 @@ generate(
 
 \item{exclude}{A character vector of components to exclude from generation. Options include: "0_test.R", "1_integrate.R", "2_enrich.R", "3_model.R", "4_evaluate.R", "5_present.Rmd", "common.R", "mediator.R", "utilities.R", "explore.R", "api.R", "lint.R", ".gitignore", "readme.md", "config.yml"}
 
-\item{path}{The path where the project should be created. Default is the current working directory.}
+\item{path}{The path where the project should be created. Default is a temporary directory: tempdir().}
+}
+\value{
+No return value.
 }
 \description{
 generates a set of files and directories to support both the data mining and data science workflow.

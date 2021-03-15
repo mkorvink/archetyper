@@ -41,6 +41,8 @@
 
 <meta property="og:title" content="generates a set of files and directories to support both the data mining and data science workflow. — generate" />
 <meta property="og:description" content="generates a set of files and directories to support both the data mining and data science workflow." />
+<meta property="og:image" content="/reference/figures/archetyper_logo_git.png" />
+<meta property="og:image:alt" content="A Data Science Project Archetype" />
 
 
 
@@ -127,7 +129,7 @@
   <span class='va'>project_name</span>,
   db_connection_type <span class='op'>=</span> <span class='st'>""</span>,
   exclude <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='op'>)</span>,
-  path <span class='op'>=</span> <span class='st'>"."</span>
+  path <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -147,10 +149,13 @@
     </tr>
     <tr>
       <th>path</th>
-      <td><p>The path where the project should be created. Default is the current working directory.</p></td>
+      <td><p>The path where the project should be created. Default is a temporary directory: tempdir().</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>No return value.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>

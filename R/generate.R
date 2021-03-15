@@ -19,7 +19,8 @@ write_to_directory <-  function(template, file_name, exclude, project_directory)
 #' @param project_name The name of the project to be generated.
 #' @param db_connection_type A optional string indicating if a "JDBC" or "ODBC" connection will be used in the project. Options include: "jdbc" or "odbc"
 #' @param exclude A character vector of components to exclude from generation. Options include: "0_test.R", "1_integrate.R", "2_enrich.R", "3_model.R", "4_evaluate.R", "5_present.Rmd", "common.R", "mediator.R", "utilities.R", "explore.R", "api.R", "lint.R", ".gitignore", "readme.md", "config.yml"
-#' @param path The path where the project should be created. Default is the current working directory.
+#' @param path The path where the project should be created. Default is a temporary directory: tempdir().
+#' @return No return value.
 #' @examples
 #'\dontrun{
 #' generate("majestic_12")
@@ -28,7 +29,14 @@ write_to_directory <-  function(template, file_name, exclude, project_directory)
 generate <- function(project_name,
                      db_connection_type = "",
                      exclude = as.character(),
-                     path = ".") {
+                     path = tempdir()) {
+
+  if (path == tempdir()){
+    print(stringr::str_c("Writing project to temporary directory: ", path))
+    print("A destination directory can be specified using the 'path' argument.")
+  } else {
+    print(stringr::str_c("Writing project to directory: ", path))
+  }
 
   is_jdbc <- F
   is_odbc <- F

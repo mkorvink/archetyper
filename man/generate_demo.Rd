@@ -4,10 +4,13 @@
 \alias{generate_demo}
 \title{generates a demo project using archetyper}
 \usage{
-generate_demo(path = ".")
+generate_demo(path = tempdir())
 }
 \arguments{
-\item{path}{The path where the project should be created. Default is the current working directory.}
+\item{path}{The path where the project should be created. Default is a temporary directory: tempdir().}
+}
+\value{
+No return value.
 }
 \description{
 generates a demo project using archetyper

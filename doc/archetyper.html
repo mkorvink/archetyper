@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
-<meta name="date" content="2021-03-12" />
+<meta name="date" content="2021-03-15" />
 
 <title>Introduction to archetyper</title>
 
@@ -334,12 +334,12 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 <h1 class="title toc-ignore">Introduction to archetyper</h1>
-<h4 class="date">2021-03-12</h4>
+<h4 class="date">2021-03-15</h4>
 
 
 
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(archetyper)</span></code></pre></div>
-<p>archetyper initializes data mining and data science projects by generating common workflow components as well as peripheral files needed to support technical best practices:</p>
+<p>‘archetyper’ initializes data mining and data science projects by generating common workflow components as well as peripheral files needed to support technical best practices:</p>
 <p>The lifecyle of a data mining project generally includes the following components:</p>
 <ul>
 <li><p>Integration</p></li>
@@ -377,27 +377,27 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <span id="cb3-5"><a href="#cb3-5"></a> [<span class="dv">9</span>] <span class="st">&quot;explore.R&quot;</span>     <span class="st">&quot;lint.R&quot;</span>        <span class="st">&quot;mediator.R&quot;</span>    <span class="st">&quot;utilities.R&quot;</span>  </span></code></pre></div>
 <p>The base work-flow files include integrate.R, enrich.R, model.R, evaluate.R, present.Rmd, and api.R.</p>
 <ul>
-<li><code>1_integrate.R</code> is responsible for acquiring and integrating data across data sources as well as standardizing data types and naming conventions of columnar data. The output of the integration step is a two-by-two tibble, with rows as observations and columns as raw candidate features, saved in version-controlled feather format to the <code>data_working/</code> directory for downstream use.</li>
-<li><code>2_enrich.R</code> is responsible for reading integrated data from the <code>data_working/</code> directory and enriching the raw features into more informative features specific to the model being applied. Tasks in this stage might include feature engineering, outlier removal, imputation, feature selection, and the assignment of testing partition labels. As with the integration step, the output of the integration step is a two-by-two tibble object saved as a version-controlled feather file in the <code>data_working/</code> directory for downstream use.</li>
+<li><code>1_integrate.R</code> is responsible for acquiring and integrating data across data sources as well as standardizing data types and naming conventions of columnar data. It is recommended that the output of the integration step is prepared as a two-by-two tibble, with rows as observations and columns as raw candidate features. The output should be saved in version-controlled feather format to the <code>data_working/</code> directory for downstream use.</li>
+<li><code>2_enrich.R</code> is responsible for reading integrated data from the <code>data_working/</code> directory and enriching the raw features into more informative features specific to the model being applied. Tasks in this stage might include feature engineering, outlier removal, imputation, feature selection, and the assignment of testing partition labels. As with the integration step, the output of the integration step should be a two-by-two tibble object saved as a version-controlled feather file in the <code>data_working/</code> directory for downstream use.</li>
 <li><code>3_model.R</code> should read the training partitions from the enriched dataset stored in the <code>data_working/</code> directory and train the desired model(s). Model objects generated within the model.R file should be stored in the <code>models/</code> directory using consistent version control and naming conventions.</li>
 <li><code>4_evaluate.R</code> should read the testing partitions from the enriched dataset stored in the <code>data_working/</code> directory and apply the trained model from the <code>model/</code> directory. Model results are appended to the testing dataset and are persisted as a .csv file in the <code>data_output/</code> directory. A feather file is not generated in this step as this data may be shared with non-technical stakeholders directly. Visualizations related to performance on the testing dataset, such as ROC Curves and box-plots, and model metadata (e.g. coefficients) may be generated at this phase and persisted in the <code>data_working/</code> directory.</li>
 <li><code>5_present.Rmd</code> is an RMarkdown document template that demonstrates the assembly of data and charts stored within the <code>data_output/</code> directory.<br />
 </li>
 <li><code>explore.R</code> exists outside of the sequential work-flow and is used primarily for transient data analysis needed for data integration and feature preparation.</li>
-<li><code>api.R</code> is a RESTful api template generated by archetyper. The API can be tested locally or deployed to an internal server. Note that the <code>archetyper</code> API template does not enforce authentication and authorization and therefore developers should consult with their security team prior to deploying an API within their organization. The RESTful service in the <code>api.R</code> file is implemented using the <code>plumber</code> library.</li>
+<li><code>api.R</code> is a RESTful api template generated by ‘archetyper’. The API can be tested locally or deployed to an internal server. Note that the <code>&#39;archetyper&#39;</code> API template does not enforce authentication and authorization and therefore developers should consult with their security team prior to deploying an API within their organization. The RESTful service in the <code>api.R</code> file is implemented using the ‘plumber’ package.</li>
 </ul>
 <p>Additional files are created to serve supporting functions:</p>
 <ul>
-<li><code>test.R</code> stores unit and integration tests with an example unit test (using the testthat library).</li>
+<li><code>test.R</code> stores unit and integration tests with an example unit test (using the ‘testthat’ package).</li>
 <li><code>mediator.R</code> is responsible for the contiguous execution of each component, with conditions to stop execution upon failure at any step. The <code>mediator.R</code> file is named after the Gang of Four mediator pattern as it orchestrates calls to each component and enforces isolation between those components. The mediator.R file further executes unit tests prior to the execution of the work-flow. In the final step, the present.Rmd file will be executed with its output (a PDF document for example) stored into the <code>docs/</code> directory.</li>
-<li><code>common.R</code> is responsible for identifying libraries common across components (e.g. <code>dplyr</code>, <code>stringr</code>, <code>magittr</code>, etc.), storing project constants, inheriting utilities, and initializing a centralized logger. Each component in the work-flow sources the common.R file.</li>
+<li><code>common.R</code> is responsible for identifying libraries common across components (e.g. ‘dplyr’, ‘stringr’, ‘magittr’, etc.), storing project constants, inheriting utilities, and initializing a centralized logger. Each component in the work-flow sources the common.R file.</li>
 <li><code>utilities.R</code> is designed to store functions that are necessary across components. The <code>common.R</code> file sources the utilities.R file, and in turn, each file in the work-flow sourcing common.R also has access to the common utility methods.</li>
-<li><code>.gitignore</code> ignores files that should not be stored in version control, including <code>config.yml</code>. The base .gitignore file included in the archetyper template was generated from the gitignore r package.</li>
+<li><code>.gitignore</code> ignores files that should not be stored in version control, including <code>config.yml</code>. The base .gitignore file included in the ‘archetyper’ template was generated from the gitignore r package.</li>
 <li><code>lint.R</code> includes linting commands for each file in the work-flow to enforce proper style and syntax conventions.</li>
 <li><code>readme.md</code> is designed to provide project documentation and details on how the user will interact with the code.</li>
-<li><code>.Rproj</code> is a file indicating that the directory includes an R project and includes metadata related to the project itself. This file further serves as the marker of the root directory so that relative directories can be used in the project’s .R files. Relative directories are supported by the <code>here</code> package.</li>
+<li><code>.Rproj</code> is a file indicating that the directory includes an R project and includes metadata related to the project itself. This file further serves as the marker of the root directory so that relative directories can be used in the project’s .R files. Relative directories are supported by the ‘here’ package.</li>
 </ul>
-<p>A directory structure designed to logically separate the data artifacts produced throughout the work-flow is also generated by the archetyper package. These directories include:</p>
+<p>A directory structure designed to logically separate the data artifacts produced throughout the work-flow is also generated by the ‘archetyper’ package. These directories include:</p>
 <ul>
 <li><code>data_input/</code> is used to store unprocessed data read in through the <code>integration.R</code> file</li>
 <li><code>data_working/</code> stores working data throughout the data mining workflow. This data includes versioned snapshots of both integrated and enriched data as well as other files and objects that might be necessary to present findings from the model.</li>
@@ -423,7 +423,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 </ul>
 <p>Note that when using odbc, the user must update the appropriate odbc configuration files (e.g. odbcinst.ini, odbc.ini)</p>
 <p><strong>JDBC</strong></p>
-<p>The following files and directories will be created with a ‘jdbc” argument:</p>
+<p>The following files and directories will be created with a ‘jdbc’ argument:</p>
 <ul>
 <li><code>dml_ddl.sql</code> stores SQL statements and other database scripts used to prepare and extract data from the source systems.</li>
 <li><code>config.yml</code> stores secret information, such as user database credentials.</li>
@@ -460,7 +460,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 </div>
 <div id="generating-the-demo-project" class="section level2">
 <h2>Generating the demo project</h2>
-<p>The archetyper project is pre-packaged with a working demo project that predicts hospital readmission rates based on publicly-available structural characteristics and complication rates.</p>
+<p>The ‘archetyper’ project is pre-packaged with a working demo project that predicts hospital readmission rates based on publicly-available structural characteristics and complication rates.</p>
 <p>The demo project can be generated by running the generate_demo() function.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>archetyper<span class="op">::</span><span class="kw">generate_demo</span>()</span>
 <span id="cb8-2"><a href="#cb8-2"></a><span class="kw">list.files</span>(<span class="st">&quot;hospital_readmissions_demo/&quot;</span>)</span>
@@ -497,7 +497,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <span id="cb9-25"><a href="#cb9-25"></a>    log4r<span class="op">::</span><span class="kw">error</span>(logger, <span class="kw">str_c</span>(<span class="st">&quot;Script error: &quot;</span>, cond))</span>
 <span id="cb9-26"><a href="#cb9-26"></a>  }</span>
 <span id="cb9-27"><a href="#cb9-27"></a>)</span></code></pre></div>
-<p>Note that the file includes a centralized logger to distinguish levels of severity (using the log4r package) as well as relative directory references (using the here package). Comments in all files were created using the bannerCommenter package.</p>
+<p>Note that the file includes a centralized logger to distinguish levels of severity (using the ‘log4r’ package) as well as relative directory references (using the ‘here’ package). Comments in all files were created using the ‘bannerCommenter’ package.</p>
 </div>
 <div id="integration" class="section level3">
 <h3>Integration</h3>
@@ -556,7 +556,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <span id="cb15-17"><a href="#cb15-17"></a>    <span class="st">&quot;PSI_9&quot;</span><span class="op">:</span><span class="st"> </span><span class="fl">-0.3028</span>,</span>
 <span id="cb15-18"><a href="#cb15-18"></a>    <span class="st">&quot;denominator_ln&quot;</span><span class="op">:</span><span class="st"> </span><span class="fl">1.3489</span>}</span>
 <span id="cb15-19"><a href="#cb15-19"></a>}</span></code></pre></div>
-<p>Note that the demo project was designed simply to illustrate the the functionality of the archetyper project. It was not designed to be a production or publish worthy model.</p>
+<p>Note that the demo project was designed simply to illustrate the the functionality of the ‘archetyper’ project. It was not designed to be a production or publish worthy model.</p>
 </div>
 </div>
 

@@ -6,13 +6,24 @@ write_to_dir <-
 
 #' generates a demo project using archetyper
 #'
-#' @param path The path where the project should be created. Default is the current working directory.
+#' @param path The path where the project should be created. Default is a temporary directory: tempdir().
+#' @return No return value.
 #' @examples
 #'\dontrun{
 #' generate("majestic_12")
 #'}
 #' @export
-generate_demo <- function(path = ".") {
+generate_demo <- function(path = tempdir()) {
+
+  if (path == tempdir()){
+    print(stringr::str_c("Writing project to temporary directory: ", path))
+    print("A destination directory can be specified using the 'path' argument.")
+  } else {
+    print(stringr::str_c("Writing project to directory: ", path))
+  }
+
+
+
   project_name <- "hospital_readmissions_demo"
   project_directory <- stringr::str_c(path, "/", project_name)
   project_r_directory <- stringr::str_c(project_directory, "/R")
