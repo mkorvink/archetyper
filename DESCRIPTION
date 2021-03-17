@@ -29,7 +29,9 @@ Imports:
   readr,
   ps
 RoxygenNote: 7.1.1
-Suggests: 
+Suggests:
+  utf8,
+  xfun,
   RCurl,
   MASS,
   broom,
