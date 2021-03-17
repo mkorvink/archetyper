@@ -6,7 +6,6 @@
   [![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
   [![License: LGPL v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0)
   [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/archetyper)](https://cran.r-project.org/package=archetyper)
-  [![total](http://cranlogs.r-pkg.org/badges/grand-total/archetyper)](http://cranlogs.r-pkg.org/)
    <!-- badges: end -->
 
 ## Overview
