@@ -5,6 +5,8 @@
   [![Codecov test coverage](https://codecov.io/gh/mkorvink/archetyper/branch/main/graph/badge.svg)](https://codecov.io/gh/mkorvink/archetyper?branch=main)
   [![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
   [![License: LGPL v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0)
+  [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/archetyper)](https://cran.r-project.org/package=archetyper)
+  [![total](http://cranlogs.r-pkg.org/badges/grand-total/archetyper)](http://cranlogs.r-pkg.org/)
    <!-- badges: end -->
 
 ## Overview
@@ -15,14 +17,22 @@
 
 ![](man/figures/flow.png)
 
-### Development version
+## Installation
+### CRAN
 
+The easiest way to get archetyper is to install it from CRAN:
+
+``` r
+install.packages("archetyper")
+```
 To get a bug fix or use a feature from the development version, you
 can install the development version of 'archetyper' from GitHub.
 
+### Development Version
+
 ``` r
 #install.packages("devtools")
-#> devtools::install_github("mkorvink/archetyper")
+devtools::install_github("mkorvink/archetyper")
 ```
 
 ## Usage
