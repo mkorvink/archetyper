@@ -59,10 +59,15 @@ A runnable demo project will be created with the generate_demo().
 ```
 You can learn more about 'archetyper' in `vignette("archetyper")`.
 
+## Tutorial
+
+[![Watch the video](https://img.youtube.com/vi/ihKOJx2xwWE/maxresdefault.jpg)](https://youtu.be/ihKOJx2xwWE)
+
 Acknowledgments
 ---------------
 
 This readme was modeled after the dplyr readme. The 'archetyper' hex image was designed by Matthew Nethery.  Thanks to Gregor Seyer for the helpful comments in reviewing this package.
+
 
 ## Code of conduct
 

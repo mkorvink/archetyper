@@ -40,7 +40,7 @@ Additionally, a well-formed data mining project will include:
 
 * A readme file
 
-* Adherence to syntax and style
+* Adherence to syntax and style (linting)
 
 * Externalized properties for secret information (when necessary)
 
